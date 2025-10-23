@@ -1,22 +1,32 @@
-```markdown
-# demo
+# ACME I‑9 — AI Form I‑9 Auditing Website
 
-This repository contains a minimal demo app so the cursor.dev agent can connect and index the project.
+This repo hosts a promotional website for ACME I‑9, an AI‑powered service that audits historical Form I‑9 records from PDFs and images, extracts field‑level data, validates against 300+ rules, and produces fix‑ready reports with an executive summary estimating mitigable fines in USD.
 
-What this repo contains
-- index.js — minimal Node entrypoint
-- package.json — minimal Node manifest
-- .env.example — example environment variables
-- .gitignore — keep secrets & node_modules out of git
+## Tech stack
+- Node.js with Express serving a static site
+- Vanilla HTML/CSS/JS located under `public/`
 
-How to run locally (optional)
-1. Clone: git clone https://github.com/chas-cp/demo.git
-2. Install Node dependencies (if you add any): npm install
-3. Set env var and run:
-   - Unix/macOS: EXAMPLE_VAR=hello node index.js
-   - Windows (PowerShell): $env:EXAMPLE_VAR='hello'; node index.js
+## Getting started
 
-Notes for cursor.dev
-- After you add these files, cursor.dev should be able to connect and index the repo.
-- Add real project code and dependency manifests as needed for your actual app.
-```
+1. Install dependencies:
+   ```bash
+   npm install
+   ```
+2. Start the site:
+   ```bash
+   npm run start
+   ```
+3. Open `http://localhost:3000` in your browser.
+
+## Project structure
+- `server.js` — Express static server
+- `public/index.html` — main landing page
+- `public/assets/styles.css` — styles with ACME I‑9 brand (fonts/colors)
+- `public/assets/script.js` — small interactions (nav toggle, demo form)
+
+## Customization
+- Update copy and sections in `public/index.html`
+- Adjust colors/typography in `public/assets/styles.css`
+
+## Notes
+This is a marketing site and does not upload or process any files. For demo purposes, the “Schedule a Demo” form simply shows a confirmation alert.
