@@ -1,0 +1,52 @@
+{
+  "program": {
+    "title": "AI PM Training Program",
+    "subtitle": "From experienced PM to AI PM — one 30-minute module a week.",
+    "scenarioCompany": "Northwind Gear Co.",
+    "scenarioNote": "Every exercise in this program uses a fictional company, Northwind Gear Co., and fictional data. Nothing you enter here should ever be real product, customer, or roadmap information — that split is intentional. See the Data Boundary note on the home page."
+  },
+  "weeks": [
+    {
+      "id": "week-1",
+      "order": 1,
+      "title": "Foundations",
+      "tagline": "Score an AI feature idea against value, viability, feasibility, and usability — reframed for AI.",
+      "timeEstimate": "~25 min"
+    },
+    {
+      "id": "week-2",
+      "order": 2,
+      "title": "Prompting & Spec-Writing",
+      "tagline": "Turn a vague ask into a structured prompt an AI tool can actually execute against.",
+      "timeEstimate": "~25 min"
+    },
+    {
+      "id": "week-3",
+      "order": 3,
+      "title": "Context Engineering & Guardrails",
+      "tagline": "Write the constraint file that keeps an AI agent inside scope during real build work.",
+      "timeEstimate": "~30 min"
+    },
+    {
+      "id": "week-4",
+      "order": 4,
+      "title": "Prototyping with AI",
+      "tagline": "Go from spec to a clickable prototype outline without waiting on an engineer.",
+      "timeEstimate": "~30 min"
+    },
+    {
+      "id": "week-5",
+      "order": 5,
+      "title": "Evaluating Output & the AI SDLC",
+      "tagline": "Review AI-produced work against a rubric, and see where a PM plugs into each stage.",
+      "timeEstimate": "~25 min"
+    },
+    {
+      "id": "capstone",
+      "order": 6,
+      "title": "Capstone",
+      "tagline": "Assemble everything you built into one shareable AI PM portfolio piece.",
+      "timeEstimate": "~20 min"
+    }
+  ]
+}

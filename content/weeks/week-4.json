@@ -1,0 +1,71 @@
+{
+  "id": "week-4",
+  "order": 4,
+  "title": "Prototyping with AI",
+  "tagline": "Go from spec to a clickable prototype outline without waiting on an engineer.",
+  "timeEstimate": "~30 min",
+  "concept": {
+    "intro": "You don't need to know how to code to get a prototype in front of people this week. What you need is the same PM skill from Week 2 — a structured prompt — pointed at describing screens and states instead of describing a policy response.",
+    "sections": [
+      {
+        "heading": "A prototype outline is a prompt input, not the prototype itself",
+        "body": "Before you ask an AI tool to generate anything visual, write down what each screen contains, what the user can do on it, and what happens next. This is faster to iterate on than a generated mockup, and it's the artifact that actually captures your product thinking — the visual is disposable, the outline isn't."
+      },
+      {
+        "heading": "Describe states, not just layout",
+        "body": "'A form with a submit button' is a layout. 'A form that's disabled until all required fields are filled, shows an inline error on invalid input, and shows a confirmation state after submit' is a prototype outline an AI tool can actually build something useful from."
+      },
+      {
+        "heading": "One key interaction beats three flat screens",
+        "body": "Pick the single most important moment in the flow — the one where the user makes a decision or the AI hands control back to a human — and describe it in more depth than everything else. That's usually the part worth testing with real people first."
+      }
+    ]
+  },
+  "scenario": {
+    "company": "Northwind Gear Co.",
+    "context": "The Returns Assistant guardrail file from Week 3 is written. Now design and engineering need to see roughly what the support-agent-facing tool looks like before committing real build time.",
+    "brief": "Outline a 3-screen flow for the support agent's view of the Returns Assistant: (1) the incoming return request with the AI's drafted response, (2) the review/edit screen where the agent approves or adjusts it, (3) the escalation state when the request is flagged."
+  },
+  "exercise": {
+    "instructions": "Describe each screen's content and state, then describe the one key interaction in more depth. Finally, write the prompt you'd actually type into an AI tool to generate a first-pass mockup or clickable outline from this.",
+    "prompts": [
+      {
+        "id": "screen_1",
+        "label": "Screen 1 — Incoming request",
+        "help": "What does the agent see when a return request with an AI draft first appears?",
+        "type": "textarea",
+        "placeholder": "e.g. Customer's original request on the left, AI's drafted response on the right, with the cited policy section highlighted inline. A confidence indicator shows whether this is a standard case or needs closer review."
+      },
+      {
+        "id": "screen_2",
+        "label": "Screen 2 — Review & edit",
+        "help": "What can the agent change, and what happens when they approve or edit?",
+        "type": "textarea",
+        "placeholder": "e.g. The draft is editable inline. An 'Approve & Send' button is enabled once any edits are saved. Edited responses are logged separately from as-drafted approvals, so we can track how often agents change the AI's output."
+      },
+      {
+        "id": "screen_3",
+        "label": "Screen 3 — Escalation state",
+        "help": "What does the agent see for a flagged request (VIP account, over $500, or unclear policy match)?",
+        "type": "textarea",
+        "placeholder": "e.g. A banner explains why it was flagged. No AI draft is shown as ready-to-send — instead, relevant policy excerpts are surfaced for the agent to write a response from scratch, with the AI available as a reference, not an autofill."
+      },
+      {
+        "id": "key_interaction",
+        "label": "Key interaction, in depth",
+        "help": "Pick the single most important moment (often the escalation handoff, or the edit-and-approve moment) and describe it in more detail than the screens above.",
+        "type": "textarea",
+        "placeholder": "e.g. The moment an agent edits a drafted response before sending is the one worth testing first — it's where we learn whether the AI is actually saving time or just adding a review step."
+      },
+      {
+        "id": "ai_prompt_used",
+        "label": "The prompt you'd use to generate this",
+        "help": "Write the actual prompt you'd type into Claude or Gemini to turn this outline into a first-pass mockup or clickable flow.",
+        "type": "textarea",
+        "placeholder": "e.g. Act as a product designer. Generate a 3-screen wireframe description for a support agent tool with these screens and states: [paste screens above]. Output as a numbered list of UI elements per screen, no visual design opinions yet."
+      }
+    ]
+  },
+  "artifactFilename": "week-4-northwind-returns-assistant-prototype-brief.md",
+  "artifactTemplate": "# Prototype Brief — Northwind Returns Assistant (support agent view)\n\n**Built by:** {{__name__}}\n**Date:** {{__date__}}\n\n## Screen 1 — Incoming request\n{{screen_1}}\n\n## Screen 2 — Review & edit\n{{screen_2}}\n\n## Screen 3 — Escalation state\n{{screen_3}}\n\n## Key interaction\n{{key_interaction}}\n\n## Prompt used to generate a first-pass mockup\n{{ai_prompt_used}}\n\n---\n_Template from the AI PM Training Program, Week 4: Prototyping with AI. Hand this brief directly to design or engineering as a starting point._\n"
+}

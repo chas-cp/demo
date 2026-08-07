@@ -1,0 +1,39 @@
+{
+  "id": "capstone",
+  "order": 6,
+  "title": "Capstone",
+  "tagline": "Assemble everything you built into one shareable AI PM portfolio piece.",
+  "timeEstimate": "~20 min",
+  "concept": {
+    "intro": "Nothing new to learn this week — just assembly. You've built a scorecard, a prompt template, a guardrail file, a prototype brief, and a review rubric, all for the same fictional feature. That's not a coincidence: it's meant to read as one coherent piece of AI PM work when you put it side by side.",
+    "sections": [
+      {
+        "heading": "Why this is worth showing your manager",
+        "body": "Five separate exercises don't obviously add up to anything. One document that walks a single feature — Northwind's Returns Assistant — from idea, through spec, through guardrails, through prototype, through review rubric, reads as exactly what an AI PM does day to day. That's the point of exporting it."
+      },
+      {
+        "heading": "What to do with this on real work",
+        "body": "Each section below is a template you've now used once. The fastest way to make this stick is to run the same five steps on one real (non-sensitive, or fully within Gemini) feature idea in the next two weeks, before the habit fades."
+      }
+    ]
+  },
+  "scenario": {
+    "company": "Northwind Gear Co.",
+    "context": "This section pulls together what you built in Weeks 1 through 5, automatically, from what's saved in your browser.",
+    "brief": "Add a short closing reflection, then export the full portfolio piece as one Markdown file."
+  },
+  "exercise": {
+    "instructions": "Write a short reflection, then export. If any earlier week is incomplete, finish it first — the export pulls in whatever you've saved so far.",
+    "prompts": [
+      {
+        "id": "reflection",
+        "label": "Closing reflection",
+        "help": "In a few sentences: what's the one habit from these five weeks you're most likely to actually use on real work next month?",
+        "type": "textarea",
+        "placeholder": "e.g. Writing the guardrail file before handing anything to an agent — I've been skipping straight from idea to ticket, and this gives engineering something concrete to build against."
+      }
+    ]
+  },
+  "artifactFilename": "capstone-northwind-returns-assistant-ai-pm-portfolio.md",
+  "artifactTemplate": "# AI PM Portfolio Piece — Northwind Gear Co. Returns Assistant\n\n**Author:** {{__name__}}\n**Date:** {{__date__}}\n\nA single feature, taken from idea to review-ready, across five AI PM skills.\n\n{{__combined_weeks__}}\n\n## Closing reflection\n{{reflection}}\n\n---\n_AI PM Training Program — Capstone. This document is entirely fictional (Northwind Gear Co.) and safe to share with a manager as evidence of program completion._\n"
+}

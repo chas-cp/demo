@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Capstone — AI PM Training Program</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27%3E%3Crect width=%27100%27 height=%27100%27 rx=%2718%27 fill=%27%232B6E63%27/%3E%3Ctext x=%2750%27 y=%2768%27 font-size=%2758%27 text-anchor=%27middle%27 fill=%27%23F1F2ED%27 font-family=%27Georgia,serif%27%3EA%3C/text%3E%3C/svg%3E" />
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <div class="wrap">
+    <header class="top">
+      <a class="back" href="/">&larr; All modules</a>
+      <div class="eyebrow" id="week-eyebrow">Module 06</div>
+      <h1 id="week-title">Loading…</h1>
+      <p class="dek" id="week-tagline"></p>
+    </header>
+
+    <section class="concept">
+      <h2>Concept</h2>
+      <p class="lede" id="concept-intro"></p>
+      <div id="concept-sections"></div>
+    </section>
+
+    <section class="scenario">
+      <h2>Your five modules</h2>
+      <p class="lede" id="scenario-brief"></p>
+      <div id="module-status" class="progress-list card"></div>
+    </section>
+
+    <section class="exercise">
+      <h2>Exercise</h2>
+      <p class="lede" id="exercise-instructions"></p>
+      <form id="exercise-form"></form>
+      <div class="actions">
+        <button type="button" class="primary" id="save-btn">Save progress</button>
+        <button type="button" class="secondary" id="complete-btn">Mark capstone complete</button>
+        <button type="button" class="secondary" id="download-btn">Export portfolio piece (.md)</button>
+        <span class="save-status" id="save-status"></span>
+      </div>
+      <h3 style="margin-top:32px;">Preview</h3>
+      <div class="card combined-preview" id="combined-preview"></div>
+    </section>
+
+    <div class="week-nav">
+      <a id="prev-link" href="#"></a>
+      <span></span>
+    </div>
+  </div>
+
+  <script src="/shared.js"></script>
+  <script src="/capstone.js"></script>
+</body>
+</html>

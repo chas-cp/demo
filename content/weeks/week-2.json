@@ -1,0 +1,71 @@
+{
+  "id": "week-2",
+  "order": 2,
+  "title": "Prompting & Spec-Writing",
+  "tagline": "Turn a vague ask into a structured prompt an AI tool can actually execute against.",
+  "timeEstimate": "~25 min",
+  "concept": {
+    "intro": "A PRD written for a human engineer assumes a lot of shared context — team conventions, prior conversations, 'you know what I mean.' A prompt written for an AI tool can't assume any of that. The skill isn't writing longer specs, it's writing specs that don't rely on anything the reader hasn't been told.",
+    "sections": [
+      {
+        "heading": "The five parts of a structured prompt",
+        "body": "Role — who the AI should act as. Context — the situation, in full, with nothing implied. Task — the specific thing to produce, stated as an instruction, not a question. Constraints — what it must not do, and any format or scope limits. Output format — exactly what the result should look like, so you're not parsing free text by hand."
+      },
+      {
+        "heading": "Vague asks fail quietly",
+        "body": "'Help me improve our returns flow with AI' will produce something — just not something useful, and you won't immediately know why. A vague prompt doesn't error out; it just gives you a plausible-sounding, low-value answer that takes real time to notice is off-target."
+      },
+      {
+        "heading": "Treat the prompt as a spec, not a one-off message",
+        "body": "A good prompt is a reusable artifact. Save it, refine it, hand it to a teammate. If you find yourself rewriting the same context every time you ask for something similar, that's a sign the prompt should become a template — which is exactly the artifact this exercise produces."
+      }
+    ]
+  },
+  "scenario": {
+    "company": "Northwind Gear Co.",
+    "context": "A stakeholder has asked, in Slack: 'Can we use AI to make the returns process easier for the support team?' That's the entire brief you were given.",
+    "brief": "Your job is to turn that one-line ask into a structured prompt you could actually run against an AI tool — either to draft a first-pass PRD section, or to have the AI draft sample Returns Assistant responses for you to evaluate. Assume the AI has no memory of anything except what you put in the prompt."
+  },
+  "exercise": {
+    "instructions": "Fill in each part of the structured prompt below for the Returns Assistant scenario. Then, if you'd like, paste the assembled prompt (shown after you save) into Claude on a personal account — using only this fictional Northwind scenario, never real data — to see what it produces.",
+    "prompts": [
+      {
+        "id": "role",
+        "label": "Role",
+        "help": "Who should the AI act as? Be specific — 'a customer support policy assistant for an outdoor gear retailer' beats 'a helpful assistant.'",
+        "type": "text",
+        "placeholder": "e.g. You are a customer support assistant for Northwind Gear Co., an outdoor equipment retailer."
+      },
+      {
+        "id": "context",
+        "label": "Context",
+        "help": "State the full situation. What does the AI need to know that a human teammate would already have picked up from context?",
+        "type": "textarea",
+        "placeholder": "e.g. Northwind's return policy allows returns within 60 days with a receipt, except for used climbing safety gear, which is non-returnable. A customer has submitted a return request with a stated reason."
+      },
+      {
+        "id": "task",
+        "label": "Task",
+        "help": "State the instruction, not a question. What exact thing should it produce?",
+        "type": "textarea",
+        "placeholder": "e.g. Draft a response to the customer that either approves the return with next steps, or explains why it doesn't qualify, citing the specific policy line."
+      },
+      {
+        "id": "constraints",
+        "label": "Constraints",
+        "help": "What must it never do? What's out of scope?",
+        "type": "textarea",
+        "placeholder": "e.g. Never approve returns over $500 without flagging for human sign-off. Never state a policy that isn't in the provided policy text. Keep the tone warm but concise."
+      },
+      {
+        "id": "output_format",
+        "label": "Output format",
+        "help": "What should the result look like structurally?",
+        "type": "textarea",
+        "placeholder": "e.g. A short customer-facing message, followed by a one-line internal note stating which policy section was cited and whether escalation is needed."
+      }
+    ]
+  },
+  "artifactFilename": "week-2-northwind-returns-assistant-prompt-template.md",
+  "artifactTemplate": "# Structured Prompt Template — Northwind Returns Assistant\n\n**Built by:** {{__name__}}\n**Date:** {{__date__}}\n\n## Role\n{{role}}\n\n## Context\n{{context}}\n\n## Task\n{{task}}\n\n## Constraints\n{{constraints}}\n\n## Output format\n{{output_format}}\n\n---\n\n## Assembled prompt (copy this into an AI tool)\n\n{{role}}\n\n{{context}}\n\n{{task}}\n\nConstraints:\n{{constraints}}\n\nRespond in this format:\n{{output_format}}\n\n---\n_Template from the AI PM Training Program, Week 2: Prompting & Spec-Writing. Swap in a real (non-sensitive) scenario and reuse this structure._\n"
+}
