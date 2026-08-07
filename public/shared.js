@@ -1,6 +1,7 @@
 // Shared helpers for the AI PM Training Program frontend. No framework, no build step.
 const AIPM = (() => {
   const NAME_KEY = "aipm:name";
+  const LEARNER_ID_KEY = "aipm:learnerId";
 
   function getName() {
     return localStorage.getItem(NAME_KEY) || "";
@@ -8,6 +9,31 @@ const AIPM = (() => {
 
   function setName(name) {
     localStorage.setItem(NAME_KEY, name);
+  }
+
+  // A per-browser id (not an account) so the team dashboard can tell learners
+  // apart even if two people share a display name. Nothing personal beyond
+  // the name they typed in is ever sent.
+  function getLearnerId() {
+    let id = localStorage.getItem(LEARNER_ID_KEY);
+    if (!id) {
+      id = (crypto.randomUUID ? crypto.randomUUID() : `id-${Date.now()}-${Math.random().toString(36).slice(2)}`)
+        .replace(/[^a-zA-Z0-9-]/g, "");
+      localStorage.setItem(LEARNER_ID_KEY, id);
+    }
+    return id;
+  }
+
+  // Best-effort: if the request fails (offline, server down), progress stays
+  // correct locally and just doesn't show on the team dashboard yet.
+  function reportProgress(weekId, status) {
+    const name = getName().trim();
+    if (!name) return Promise.resolve();
+    return fetch("/api/progress", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ learnerId: getLearnerId(), name, weekId, status }),
+    }).catch(() => {});
   }
 
   function answersKey(weekId) {
@@ -83,7 +109,7 @@ const AIPM = (() => {
   }
 
   return {
-    getName, setName, getAnswers, saveAnswers, isCompleted, setCompleted,
+    getName, setName, getLearnerId, reportProgress, getAnswers, saveAnswers, isCompleted, setCompleted,
     weekStatus, todayLabel, fillTemplate, downloadText, escapeHtml,
   };
 })();

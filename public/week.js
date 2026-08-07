@@ -68,9 +68,11 @@
     return result;
   }
 
+  const fieldIds = week.exercise.prompts.map((f) => f.id);
   const statusEl = document.getElementById("save-status");
   function save(showStatus) {
     AIPM.saveAnswers(weekId, collectAnswers());
+    AIPM.reportProgress(weekId, AIPM.weekStatus(weekId, fieldIds));
     if (showStatus) {
       statusEl.textContent = "Saved.";
       setTimeout(() => { if (statusEl.textContent === "Saved.") statusEl.textContent = ""; }, 2000);
@@ -80,8 +82,9 @@
   document.getElementById("save-btn").addEventListener("click", () => save(true));
 
   document.getElementById("complete-btn").addEventListener("click", () => {
-    save(false);
+    AIPM.saveAnswers(weekId, collectAnswers());
     AIPM.setCompleted(weekId, true);
+    AIPM.reportProgress(weekId, "complete");
     statusEl.textContent = "Saved and marked complete.";
   });
 

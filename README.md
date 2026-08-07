@@ -13,16 +13,24 @@ Every exercise runs against one fictional company and feature — **Northwind Ge
   - `index.html` / `app.js` — home page, progress tracker
   - `week.html` / `week.js` — generic module page (concept, scenario, exercise form, save/complete/download)
   - `capstone.html` / `capstone.js` — pulls together all five modules' saved answers into one exportable portfolio doc
-  - `shared.js` — localStorage helpers and the `{{token}}` template-filling logic
+  - `team.html` / `team.js` — team-wide progress dashboard
+  - `shared.js` — localStorage helpers, the `{{token}}` template-filling logic, and progress reporting
+- `data/progress.json` — created automatically at first run; holds team progress (not committed — see `.gitignore`)
 
 ## How progress works
 
-Everything is stored in the browser's `localStorage` — there's no backend database or accounts in this MVP (by design, for a single pilot team). Each module tracks:
+A learner's actual written answers live only in that browser's `localStorage` — they're never sent anywhere. Separately, if a learner enters their name on the home page, their **name and each module's status** (not started / in progress / complete — never the answer text) is reported to the server and stored in `data/progress.json`, keyed by a random per-browser id (no login, no account). Leaving the name field blank keeps everything local to that device.
 
-- the learner's answers to that week's exercise fields
-- whether the module has been explicitly marked complete
+Each module tracks:
+
+- the learner's answers to that week's exercise fields (local only)
+- whether the module has been explicitly marked complete (local + reported, if named)
 
 Every module can export its exercise as a filled-in Markdown template (a real reusable artifact: a scorecard, a prompt template, a guardrail file, a prototype brief, a review rubric). The capstone stitches all five into one shareable document.
+
+## Team progress dashboard
+
+`/team.html` shows, for everyone who's entered a name: a status pill per module and an overall completion count, plus a per-module completion summary across the whole group. It reads straight from `data/progress.json` — there's no separate "team" or "cohort" concept yet (by design, for a single pilot team; see the plan for what a multi-team v2 would add).
 
 ## Running locally
 

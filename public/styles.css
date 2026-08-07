@@ -66,6 +66,7 @@ a:focus-visible, button:focus-visible, [tabindex]:focus-visible, textarea:focus-
   margin: 0 auto;
   padding: 48px 24px 96px;
 }
+.wrap.wrap-wide { max-width: 920px; }
 
 header.top {
   margin-bottom: 40px;
@@ -286,6 +287,46 @@ button.secondary:hover { border-color: var(--accent); color: var(--accent); }
   overflow-y: auto;
   color: var(--muted);
 }
+
+/* ---- team dashboard ---- */
+.glance {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 1px;
+  background: var(--line);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  overflow: hidden;
+}
+.glance .cell {
+  background: var(--paper-raised);
+  padding: 14px 12px;
+}
+.glance .cell .k {
+  font-size: 10.5px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--muted);
+  margin-bottom: 6px;
+}
+.glance .cell .v { font-size: 14px; font-weight: 700; font-family: "SF Mono", "Cascadia Code", "Roboto Mono", Consolas, ui-monospace, monospace; }
+.glance .cell .track { height: 4px; background: var(--line); border-radius: 999px; overflow: hidden; margin-top: 6px; }
+.glance .cell .track .fill { height: 100%; background: var(--accent); }
+
+.table-wrap { overflow-x: auto; border-radius: 8px; }
+table { width: 100%; border-collapse: collapse; font-size: 14px; min-width: 640px; }
+th, td { text-align: left; padding: 11px 14px; border-bottom: 1px solid var(--line); white-space: nowrap; }
+thead th {
+  font-size: 10.5px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--muted);
+  font-weight: 600;
+  background: var(--accent-soft);
+}
+tbody tr:last-child td { border-bottom: none; }
+td.learner-name { font-weight: 600; white-space: normal; }
+td.overall { font-family: "SF Mono", "Cascadia Code", "Roboto Mono", Consolas, ui-monospace, monospace; color: var(--muted); }
 
 footer.foot {
   border-top: 1px solid var(--line-strong);
