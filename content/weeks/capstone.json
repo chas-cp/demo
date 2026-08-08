@@ -10,6 +10,18 @@
     "context": "This section pulls together what you built in Weeks 1 through 5, automatically, from what's saved in your browser.",
     "brief": "Five separate exercises don't obviously add up to anything. One document that walks a single feature — the I-9 Completion Assistant — from idea, through spec, through guardrails, through prototype, through review rubric, reads as exactly what an AI PM does day to day. Add a short closing reflection, then export the full portfolio piece as one Markdown file."
   },
+  "whatsNext": {
+    "heading": "What's next: the orchestrator model",
+    "thesis": "The PM's job doesn't change — discover the right problem, define the right solution, get it built, get it adopted. What changes with AI is capacity. A PM who runs several scoped AI workstreams in parallel can sustain a depth of discovery, spec quality, and review rigor that used to take a team of analysts. The five skills you just practiced aren't isolated exercises — they're the building blocks of that model, applied one at a time. Once they're second nature, the same skills compose into running multiple scoped workstreams at once, with you as the orchestrator: scoping each one, reviewing its output, and deciding what becomes a commitment.",
+    "mapping": [
+      { "week": "Week 1 — Foundations", "role": "Prioritization & scoring", "note": "The value/viability/feasibility/usability judgment calls you made by hand are exactly what a scoring workstream needs a PM to define before it can run consistently across a large batch of ideas." },
+      { "week": "Week 2 — Prompting & Spec-Writing", "role": "Requirements & spec drafting", "note": "The structured prompt template you built is the seed of a scoped workstream that turns a validated idea into a build-ready spec." },
+      { "week": "Week 3 — Context Engineering & Guardrails", "role": "Context & knowledge management", "note": "Your guardrail file is a small version of the single source of truth — product definitions, constraints, past decisions — that every other workstream should draw from, so outputs don't drift from each other." },
+      { "week": "Week 4 — Prototyping with AI", "role": "Prototyping", "note": "Going from spec to clickable outline without engineering is exactly the workstream that compresses 'is this the right direction' from weeks to hours." },
+      { "week": "Week 5 — Evaluating Output & the AI SDLC", "role": "Review gates", "note": "Your rubric is the human-review checkpoint every workstream needs before its output becomes a commitment — 'agents draft, PMs decide' is the same rule you've been practicing all along." }
+    ],
+    "note": "A few workstreams in the fuller model — continuous competitive intelligence, syncing with a roadmap tool, synthesizing post-launch adoption data — need enterprise tool access and data pipelines beyond a personal Claude account and synthetic data, so they're not something to practice solo. Treat this page as a preview of where these five habits lead, not a new assignment — a fuller multi-workstream track is a natural next step once Weeks 1-5 feel automatic."
+  },
   "sections": [
     {
       "id": "reflection",

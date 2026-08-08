@@ -37,6 +37,21 @@
     statusListEl.appendChild(a);
   });
 
+  // what's next: orchestrator model preview
+  document.getElementById("whats-next-heading").textContent = capstone.whatsNext.heading;
+  document.getElementById("whats-next-thesis").textContent = capstone.whatsNext.thesis;
+  document.getElementById("whats-next-note").textContent = capstone.whatsNext.note;
+  const mappingTableEl = document.getElementById("whats-next-table");
+  capstone.whatsNext.mapping.forEach((row) => {
+    const tr = document.createElement("tr");
+    tr.innerHTML = `
+      <td>${AIPM.escapeHtml(row.week)}</td>
+      <td>${AIPM.escapeHtml(row.role)}</td>
+      <td>${AIPM.escapeHtml(row.note)}</td>
+    `;
+    mappingTableEl.appendChild(tr);
+  });
+
   // reflection section(s), same rendering pattern as week.js
   const answers = AIPM.getAnswers(weekId);
   const formEl = document.getElementById("exercise-form");

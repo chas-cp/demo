@@ -387,6 +387,12 @@ tbody tr:last-child td { border-bottom: none; }
 td.learner-name { font-weight: 700; white-space: normal; }
 td.overall { font-family: "SF Mono", "Cascadia Code", "Roboto Mono", Consolas, ui-monospace, monospace; color: var(--muted); }
 
+.prose-table { min-width: 0; table-layout: fixed; }
+.prose-table th, .prose-table td { white-space: normal; vertical-align: top; }
+.prose-table th:first-child, .prose-table td:first-child { width: 20%; font-weight: 700; }
+.prose-table th:nth-child(2), .prose-table td:nth-child(2) { width: 22%; color: var(--accent); font-weight: 700; }
+.prose-table th:last-child, .prose-table td:last-child { width: 58%; color: var(--muted); }
+
 footer.foot {
   border-top: 1px solid var(--line-strong);
   margin-top: 56px;
