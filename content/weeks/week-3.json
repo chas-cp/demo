@@ -4,68 +4,84 @@
   "title": "Context Engineering & Guardrails",
   "tagline": "Write the constraint file that keeps an AI agent inside scope during real build work.",
   "timeEstimate": "~30 min",
-  "concept": {
-    "intro": "When an engineer runs an AI coding agent at Level 3 (agentic, with approval checkpoints) or Level 4 (more autonomous), the agent doesn't work off tribal knowledge — it works off whatever's written down. That written-down file is where a PM's judgment gets encoded, and increasingly, PMs are the ones best positioned to write it.",
-    "sections": [
-      {
-        "heading": "The autonomy spectrum",
-        "body": "Level 1: autocomplete — suggests the next line, a human writes everything else. Level 2: chat-assist — a human asks, the AI answers, a human still does the work. Level 3: agentic with approval — the AI plans and executes multi-step work, but checkpoints require human sign-off before anything ships. Level 4: autonomous agentic — the AI executes and ships within pre-defined bounds, with humans reviewing outcomes rather than every step. Your role changes at each level — from writing tickets, to writing the bounds the agent operates inside."
-      },
-      {
-        "heading": "What goes in a guardrail file",
-        "body": "Project context (what this system is, in plain terms), allowed actions (what's explicitly in scope), forbidden actions (what the agent must never do, no matter how reasonable it seems in the moment), escalation rules (what triggers a stop-and-ask-a-human), and a definition of done (how anyone — human or agent — knows the work is actually finished)."
-      },
-      {
-        "heading": "Why this is a PM skill, not just an engineering one",
-        "body": "Forbidden actions and escalation rules are product judgment calls — what's an acceptable risk, what needs a human in the loop, what 'done' means for the user. An engineer can write the technical constraints; a PM is often the right person to write the product constraints. The two together are what keeps an agent safe to run at Level 3 or 4."
-      }
-    ]
-  },
+  "intro": "When an engineer runs an AI coding agent at Level 3 (agentic, with approval checkpoints) or Level 4 (more autonomous), the agent doesn't work off tribal knowledge — it works off whatever's written down. That written-down file is where a PM's judgment gets encoded, and increasingly, PMs are the ones best positioned to write it. The same pattern applies whether the agent is touching I-9 review, ACA reporting, or any other regulated Employer Services workflow: the constraints are a product decision before they're an engineering one.",
   "scenario": {
-    "company": "Northwind Gear Co.",
-    "context": "Engineering is ready to build the Returns Assistant using an AI coding agent running at Level 3 (it can write and test code across multiple files, but a human approves before anything merges).",
+    "company": "Equifax Workforce Solutions — I-9 & Onboarding",
+    "context": "Engineering is ready to build the I-9 Completion Assistant using an AI coding agent running at Level 3 (it can write and test code across multiple files, but a human approves before anything merges).",
     "brief": "Before the engineering team starts the agent, they've asked you — the PM — to write the guardrail file that will sit alongside the code and constrain what the agent is allowed to do. This is the file the agent reads before it takes any action."
   },
-  "exercise": {
-    "instructions": "Write each section of the guardrail file. Be concrete — 'be careful' is not a constraint an agent can act on; 'never approve returns over $500 without a human sign-off' is.",
-    "prompts": [
-      {
-        "id": "project_context",
-        "label": "Project context",
+  "sections": [
+    {
+      "id": "project_context",
+      "heading": "Project context",
+      "learning": "What is this system, in plain terms, with no assumed prior knowledge? Level 1 is autocomplete, Level 2 is chat-assist, Level 3 is agentic-with-approval, Level 4 is autonomous agentic — your role shifts at each level, from writing tickets to writing the bounds the agent operates inside. This section sets the stage for everything after it.",
+      "example": {
+        "text": "This service reviews I-9 forms and supporting documents for Meridian Logistics new hires against federal employment-eligibility requirements, and flags issues for HR admin review. It does not contact employees directly, and it does not make final approve/reject decisions — a human HR admin reviews every flag."
+      },
+      "field": {
+        "label": "Your turn: Project context",
         "help": "What is this system, in plain terms, with no assumed prior knowledge?",
         "type": "textarea",
-        "placeholder": "e.g. This service drafts return-approval responses for Northwind Gear Co. customers by matching requests against the current return policy document. It does not send anything directly to customers — a human agent reviews every draft."
+        "placeholder": "Describe the system as if the reader has never seen it."
+      }
+    },
+    {
+      "id": "allowed_actions",
+      "heading": "Allowed actions",
+      "learning": "What's explicitly in scope for the agent to build or change? Forbidden actions and escalation rules are product judgment calls, not just technical ones — what's an acceptable risk, what needs a human in the loop. An engineer can write the technical constraints; a PM is often the right person to write the product ones.",
+      "example": {
+        "text": "Read I-9 form data and document images, compare against federal requirement rules, generate a list of flagged issues with citations, generate an internal note for the HR admin. Nothing else."
       },
-      {
-        "id": "allowed_actions",
-        "label": "Allowed actions",
+      "field": {
+        "label": "Your turn: Allowed actions",
         "help": "What's explicitly in scope for the agent to build or change?",
         "type": "textarea",
-        "placeholder": "e.g. Read the policy document, draft a customer-facing response, draft an internal note citing the policy section, flag a request for escalation."
+        "placeholder": "List what's clearly in bounds."
+      }
+    },
+    {
+      "id": "forbidden_actions",
+      "heading": "Forbidden actions",
+      "learning": "What must the agent never do, even if it seems reasonable in the moment? This is the section worth the most care — a vague 'be careful' isn't a constraint an agent can act on; a specific prohibition is.",
+      "example": {
+        "text": "Never contact the new hire directly. Never mark an I-9 as approved or rejected — only flag or don't flag. Never state a federal requirement that isn't in the source rules document. Never store or output a document image alongside a person's full Social Security number in plain text."
       },
-      {
-        "id": "forbidden_actions",
-        "label": "Forbidden actions",
+      "field": {
+        "label": "Your turn: Forbidden actions",
         "help": "What must the agent never do, even if it seems reasonable in context?",
         "type": "textarea",
-        "placeholder": "e.g. Never auto-send a response to a customer. Never approve a return over $500 without a human sign-off flag. Never state a policy that isn't present in the source document. Never modify the policy document itself."
+        "placeholder": "List the hard no's, as concretely as possible."
+      }
+    },
+    {
+      "id": "escalation_rules",
+      "heading": "Escalation rules",
+      "learning": "What situations should stop the agent and require a human decision? This is the same discipline that governs any regulated Employer Services flow — an ACA reporting assistant, for instance, would need its own explicit escalation rule for anything touching a filing deadline.",
+      "example": {
+        "text": "Any document type the model hasn't been trained to recognize. Any new hire previously flagged in a compliance audit. Any case where required fields conflict between the I-9 and the supporting document in a way the rules don't clearly resolve."
       },
-      {
-        "id": "escalation_rules",
-        "label": "Escalation rules",
+      "field": {
+        "label": "Your turn: Escalation rules",
         "help": "What situations should stop the agent and require a human decision?",
         "type": "textarea",
-        "placeholder": "e.g. Any request tagged as a VIP account. Any return amount over $500. Any request where the policy document doesn't clearly cover the situation."
-      },
-      {
-        "id": "definition_of_done",
-        "label": "Definition of done",
-        "help": "How would anyone — human or agent — know this work is actually finished and safe to ship?",
-        "type": "textarea",
-        "placeholder": "e.g. Every drafted response cites a specific policy section. All test cases from the historical request set produce the correct escalation flag. No test case contains a fabricated policy statement."
+        "placeholder": "List the trigger conditions for stopping and asking a human."
       }
-    ]
-  },
-  "artifactFilename": "week-3-northwind-returns-assistant-guardrails.md",
-  "artifactTemplate": "# context.md — Northwind Returns Assistant\n\n**Written by:** {{__name__}}\n**Date:** {{__date__}}\n\n## Project context\n{{project_context}}\n\n## Allowed actions\n{{allowed_actions}}\n\n## Forbidden actions\n{{forbidden_actions}}\n\n## Escalation rules\n{{escalation_rules}}\n\n## Definition of done\n{{definition_of_done}}\n\n---\n_Template from the AI PM Training Program, Week 3: Context Engineering & Guardrails. This is the shape of a CLAUDE.md / AGENTS.md-style file — reuse it as a starting point when scoping real agentic work._\n"
+    },
+    {
+      "id": "definition_of_done",
+      "heading": "Definition of done",
+      "learning": "How would anyone — human or agent — know this work is actually finished and safe to ship?",
+      "example": {
+        "text": "Every flagged issue cites a specific federal requirement. All test cases from the historical Meridian I-9 set produce the same flag/no-flag outcome an HR admin already reached. No test case contains a fabricated requirement or a stored raw SSN."
+      },
+      "field": {
+        "label": "Your turn: Definition of done",
+        "help": "How would anyone know this work is actually finished and safe to ship?",
+        "type": "textarea",
+        "placeholder": "State the concrete pass conditions."
+      }
+    }
+  ],
+  "artifactFilename": "week-3-i9-completion-assistant-guardrails.md",
+  "artifactTemplate": "# context.md — I-9 Completion Assistant\n\n**Written by:** {{__name__}}\n**Date:** {{__date__}}\n\n## Project context\n{{project_context}}\n\n## Allowed actions\n{{allowed_actions}}\n\n## Forbidden actions\n{{forbidden_actions}}\n\n## Escalation rules\n{{escalation_rules}}\n\n## Definition of done\n{{definition_of_done}}\n\n---\n_Template from the AI PM Training Program, Week 3: Context Engineering & Guardrails. This is the shape of a CLAUDE.md / AGENTS.md-style file — reuse it as a starting point when scoping real agentic work._\n"
 }

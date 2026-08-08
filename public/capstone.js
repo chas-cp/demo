@@ -16,23 +16,13 @@
   document.title = `${capstone.title} — AI PM Training Program`;
   document.getElementById("week-title").textContent = capstone.title;
   document.getElementById("week-tagline").textContent = capstone.tagline;
-  document.getElementById("concept-intro").textContent = capstone.concept.intro;
-
-  const conceptEl = document.getElementById("concept-sections");
-  capstone.concept.sections.forEach((s) => {
-    const div = document.createElement("div");
-    div.className = "concept-section";
-    div.innerHTML = `<h3>${AIPM.escapeHtml(s.heading)}</h3><p>${AIPM.escapeHtml(s.body)}</p>`;
-    conceptEl.appendChild(div);
-  });
-
+  document.getElementById("week-intro").textContent = capstone.intro;
   document.getElementById("scenario-brief").textContent = capstone.scenario.brief;
-  document.getElementById("exercise-instructions").textContent = capstone.exercise.instructions;
 
   // module status list
   const statusListEl = document.getElementById("module-status");
   priorWeeks.forEach((w, i) => {
-    const fieldIds = (priorDetails[i].exercise?.prompts || []).map((p) => p.id);
+    const fieldIds = (priorDetails[i].sections || []).map((s) => s.id);
     const status = AIPM.weekStatus(w.id, fieldIds);
     const statusLabel = { "not-started": "Not started", "in-progress": "In progress", complete: "Complete" }[status];
     const a = document.createElement("a");
@@ -47,25 +37,34 @@
     statusListEl.appendChild(a);
   });
 
-  // reflection field(s), same rendering pattern as week.js
+  // reflection section(s), same rendering pattern as week.js
   const answers = AIPM.getAnswers(weekId);
   const formEl = document.getElementById("exercise-form");
-  capstone.exercise.prompts.forEach((field) => {
-    const wrap = document.createElement("div");
-    wrap.className = "field";
-    wrap.innerHTML = `
-      <label class="field-label" for="field-${field.id}">${AIPM.escapeHtml(field.label)}</label>
-      <p class="help">${AIPM.escapeHtml(field.help)}</p>
-      <textarea id="field-${field.id}" placeholder="${AIPM.escapeHtml(field.placeholder || "")}"></textarea>
+  capstone.sections.forEach((section) => {
+    const card = document.createElement("div");
+    card.className = "card section-card";
+    card.innerHTML = `
+      <h3>${AIPM.escapeHtml(section.heading)}</h3>
+      <p class="learning">${AIPM.escapeHtml(section.learning)}</p>
+      <div class="example-block">
+        <div class="block-label">Example</div>
+        <p>${AIPM.escapeHtml(section.example.text)}</p>
+      </div>
+      <div class="field">
+        <div class="block-label">Your turn</div>
+        <label class="field-label" for="field-${section.id}">${AIPM.escapeHtml(section.field.label)}</label>
+        <p class="help">${AIPM.escapeHtml(section.field.help)}</p>
+        <textarea id="field-${section.id}" placeholder="${AIPM.escapeHtml(section.field.placeholder || "")}"></textarea>
+      </div>
     `;
-    formEl.appendChild(wrap);
-    wrap.querySelector("textarea").value = answers[field.id] || "";
+    formEl.appendChild(card);
+    card.querySelector("textarea").value = answers[section.id] || "";
   });
 
   function collectAnswers() {
     const result = {};
-    capstone.exercise.prompts.forEach((field) => {
-      result[field.id] = document.getElementById(`field-${field.id}`).value;
+    capstone.sections.forEach((section) => {
+      result[section.id] = document.getElementById(`field-${section.id}`).value;
     });
     return result;
   }
@@ -92,7 +91,7 @@
   updatePreview();
   formEl.addEventListener("input", updatePreview);
 
-  const capstoneFieldIds = capstone.exercise.prompts.map((f) => f.id);
+  const capstoneFieldIds = capstone.sections.map((s) => s.id);
   const statusEl = document.getElementById("save-status");
   function save(showStatus) {
     AIPM.saveAnswers(weekId, collectAnswers());

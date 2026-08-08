@@ -2,8 +2,9 @@
   "program": {
     "title": "AI PM Training Program",
     "subtitle": "From experienced PM to AI PM — one 30-minute module a week.",
-    "scenarioCompany": "Northwind Gear Co.",
-    "scenarioNote": "Every exercise in this program uses a fictional company, Northwind Gear Co., and fictional data. Nothing you enter here should ever be real product, customer, or roadmap information — that split is intentional. See the Data Boundary note on the home page."
+    "productName": "Employer Services",
+    "scenarioCompany": "Equifax Workforce Solutions — I-9 & Onboarding",
+    "scenarioNote": "Every exercise runs on a real Equifax Workforce Solutions product area — I-9 & Onboarding — but a fully fictional customer, Meridian Logistics, and fictional data throughout. Nothing you enter here should ever be a real customer, real employee, or real roadmap detail. See the Data Boundary note on the home page."
   },
   "weeks": [
     {

@@ -4,68 +4,84 @@
   "title": "Evaluating Output & the AI SDLC",
   "tagline": "Review AI-produced work against a rubric, and see where a PM plugs into each stage.",
   "timeEstimate": "~25 min",
-  "concept": {
-    "intro": "The AI software development lifecycle has six stages, and a PM has a job at every one of them — not just at the start (framing) and the end (deciding what ships).",
-    "sections": [
-      {
-        "heading": "The six stages",
-        "body": "Framing (is this the right problem, Week 1's job). Data & eval design (what does 'working' mean, and do we have the data to check it). Prompt & context design (Weeks 2 and 3's job). Agentic build (the AI agent does the work, inside the guardrails you wrote). Guardrail review (did the output actually stay inside scope — this week's job). Monitoring (does it keep working once real users touch it)."
-      },
-      {
-        "heading": "Reviewing AI output is a distinct skill from reviewing a human's work",
-        "body": "A human who cuts a corner usually knows they cut it. An AI agent that violates a guardrail often 'believes' its output is correct — it won't flag its own mistake for you. That means the review has to be rubric-driven and specific, checking each constraint explicitly, rather than a general read-through for anything that feels off."
-      },
-      {
-        "heading": "A rubric turns a vague worry into a checklist",
-        "body": "Instead of 'does this look right,' a good rubric asks: did it cite its source, did it stay within the allowed actions, did it escalate when it should have, is the output in the format we specified. Each is a yes/no or a specific defect, not a feeling."
-      }
-    ]
-  },
+  "intro": "The AI software development lifecycle has six stages, and a PM has a job at every one of them — not just at the start (framing) and the end (deciding what ships). Framing (Week 1). Data & eval design. Prompt & context design (Weeks 2-3). Agentic build. Guardrail review — this week. Monitoring, once real users touch it.",
   "scenario": {
-    "company": "Northwind Gear Co.",
-    "context": "The Level 3 agent has produced its first batch of drafted Returns Assistant responses, built against the guardrail file from Week 3. Below is one of the drafts, exactly as the agent produced it.",
-    "brief": "AGENT OUTPUT — Draft response to return request #4471:\n\nCustomer-facing message: \"Hi! Your return for the Summit XT Tent ($612) has been approved. You'll receive a prepaid shipping label by email within 24 hours. Thanks for shopping with Northwind Gear Co.\"\n\nInternal note: \"Approved per standard 60-day return policy, section 3.1. No issues found.\"\n\n(Recall from Week 3's guardrail file: returns over $500 require a human sign-off flag before anything is treated as approved.)"
+    "company": "Equifax Workforce Solutions — I-9 & Onboarding",
+    "context": "The Level 3 agent has produced its first batch of I-9 Completion Assistant results, built against the guardrail file from Week 3. Below is one result, exactly as the agent produced it. (The same rubric discipline applies to any Employer Services agent output — an ID Watchdog fraud-signal review or an Unemployment Cost Management claims assistant would need the same specific, checklist-driven review, not a general read-through for anything that feels off.)",
+    "brief": "AGENT OUTPUT — Review result for submission #A-2291 (new hire: D. Okonkwo):\n\nFlag summary: \"No issues found. All Section 1 and Section 2 fields match supporting documents. Ready to close.\"\n\nInternal note: \"Reviewed per standard I-9 field-matching rules. No discrepancies.\"\n\n(Recall from Week 3's guardrail file: any new hire previously flagged in a compliance audit must be routed for manual review, regardless of what the field comparison finds. D. Okonkwo was flagged in Meridian's Q1 compliance audit for a prior I-9 timing issue.)"
   },
-  "exercise": {
-    "instructions": "First, review the agent's output against the Week 3 guardrail file and note what it got wrong. Then write out a reusable rubric — four criteria you'd check on every batch of Returns Assistant drafts going forward.",
-    "prompts": [
-      {
-        "id": "flags_found",
-        "label": "What did the agent get wrong?",
-        "help": "Check the draft above against the guardrail file's escalation rules. Be specific about which rule was violated.",
-        "type": "textarea",
-        "placeholder": "e.g. The return is $612, over the $500 escalation threshold, but the agent marked it approved with no sign-off flag and no escalation note. This is a guardrail violation, not just a style issue."
+  "sections": [
+    {
+      "id": "flags_found",
+      "heading": "What did the agent get wrong?",
+      "learning": "Reviewing AI output is a distinct skill from reviewing a human's work. A human who cuts a corner usually knows they cut it. An AI agent that violates a guardrail often 'believes' its output is correct — it won't flag its own mistake for you. That means checking each constraint explicitly, not reading through for a general feeling that something's off.",
+      "example": {
+        "text": "D. Okonkwo was previously flagged in a compliance audit, which — per the Week 3 guardrail file — should have triggered manual review regardless of how clean the field comparison looked. The agent closed the case as 'no issues found' with no escalation flag at all. This is a guardrail violation, not a field-matching error."
       },
-      {
-        "id": "rubric_scope",
-        "label": "Rubric — scope adherence",
-        "help": "How would you check, on every batch, that the agent stayed within allowed actions and respected forbidden actions?",
+      "field": {
+        "label": "Your turn: What went wrong",
+        "help": "Check the result above against the guardrail file's escalation rules. Be specific about which rule was violated.",
         "type": "textarea",
-        "placeholder": "e.g. Spot-check that no response was auto-sent, and that every return over $500 carries a human sign-off flag before being marked approved."
+        "placeholder": "Name the specific rule violated, not just 'this seems wrong.'"
+      }
+    },
+    {
+      "id": "rubric_scope",
+      "heading": "Rubric — scope adherence",
+      "learning": "A rubric turns a vague worry into a checklist. Instead of 'does this look right,' ask: did it stay within the allowed actions specifically.",
+      "example": {
+        "text": "Spot-check that no submission was auto-closed without checking prior-audit-flag status, and that no employee was contacted directly by the agent."
       },
-      {
-        "id": "rubric_citation",
-        "label": "Rubric — policy citation accuracy",
-        "help": "How would you check that nothing was fabricated?",
+      "field": {
+        "label": "Your turn: Scope adherence",
+        "help": "How would you check, on every batch, that the agent stayed within allowed actions?",
         "type": "textarea",
-        "placeholder": "e.g. Every internal note must cite a specific policy section number. Spot-check a sample against the actual policy document to confirm the cited section says what the note claims."
+        "placeholder": "State a specific, checkable condition."
+      }
+    },
+    {
+      "id": "rubric_citation",
+      "heading": "Rubric — requirement citation accuracy",
+      "learning": "How would you check that nothing was fabricated?",
+      "example": {
+        "text": "Every flag must cite a specific federal requirement. Spot-check a sample against the actual requirements document to confirm the cited rule says what the flag claims."
       },
-      {
-        "id": "rubric_escalation",
-        "label": "Rubric — escalation correctness",
+      "field": {
+        "label": "Your turn: Citation accuracy",
+        "help": "How would you verify nothing was fabricated?",
+        "type": "textarea",
+        "placeholder": "Describe the spot-check."
+      }
+    },
+    {
+      "id": "rubric_escalation",
+      "heading": "Rubric — escalation correctness",
+      "learning": "How would you verify every case that should have escalated, did?",
+      "example": {
+        "text": "Run every prior-audit-flagged new hire from the historical set through the assistant and confirm 100% were routed for manual review, regardless of what the field comparison found — zero false negatives allowed on this rule."
+      },
+      "field": {
+        "label": "Your turn: Escalation correctness",
         "help": "How would you verify every case that should have escalated, did?",
         "type": "textarea",
-        "placeholder": "e.g. Run all VIP-account and over-$500 test cases from the historical set and confirm 100% received an escalation flag, with zero false negatives."
-      },
-      {
-        "id": "rubric_format",
-        "label": "Rubric — output format",
-        "help": "How would you confirm the output structure matches what was specified (customer message + internal note)?",
-        "type": "textarea",
-        "placeholder": "e.g. Every draft must include both a customer-facing message and a separate internal note — reject any output missing either section."
+        "placeholder": "Describe the test set and the pass bar."
       }
-    ]
-  },
-  "artifactFilename": "week-5-northwind-returns-assistant-review-rubric.md",
-  "artifactTemplate": "# Review Rubric — Northwind Returns Assistant\n\n**Built by:** {{__name__}}\n**Date:** {{__date__}}\n\n## Issue found in sample draft #4471\n{{flags_found}}\n\n## Rubric — Scope adherence\n{{rubric_scope}}\n\n## Rubric — Policy citation accuracy\n{{rubric_citation}}\n\n## Rubric — Escalation correctness\n{{rubric_escalation}}\n\n## Rubric — Output format\n{{rubric_format}}\n\n---\n_Template from the AI PM Training Program, Week 5: Evaluating Output & the AI SDLC. Run this rubric against every new batch of agent output before it ships._\n"
+    },
+    {
+      "id": "rubric_format",
+      "heading": "Rubric — output format",
+      "learning": "How would you confirm the output structure matches what was specified (flag summary plus internal note)?",
+      "example": {
+        "text": "Every result must include both a flag summary and a separate internal note — reject any output missing either section, or any flag missing a cited requirement."
+      },
+      "field": {
+        "label": "Your turn: Output format",
+        "help": "How would you confirm the output structure matches what was specified?",
+        "type": "textarea",
+        "placeholder": "State the required structure and what counts as a reject."
+      }
+    }
+  ],
+  "artifactFilename": "week-5-i9-completion-assistant-review-rubric.md",
+  "artifactTemplate": "# Review Rubric — I-9 Completion Assistant\n\n**Built by:** {{__name__}}\n**Date:** {{__date__}}\n\n## Issue found in sample result #A-2291\n{{flags_found}}\n\n## Rubric — Scope adherence\n{{rubric_scope}}\n\n## Rubric — Requirement citation accuracy\n{{rubric_citation}}\n\n## Rubric — Escalation correctness\n{{rubric_escalation}}\n\n## Rubric — Output format\n{{rubric_format}}\n\n---\n_Template from the AI PM Training Program, Week 5: Evaluating Output & the AI SDLC. Run this rubric against every new batch of agent output before it ships._\n"
 }

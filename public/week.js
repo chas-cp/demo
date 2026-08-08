@@ -25,50 +25,58 @@
   document.getElementById("week-eyebrow").textContent = `Module ${String(week.order).padStart(2, "0")} · ${week.timeEstimate}`;
   document.getElementById("week-title").textContent = week.title;
   document.getElementById("week-tagline").textContent = week.tagline;
-  document.getElementById("concept-intro").textContent = week.concept.intro;
-
-  const conceptEl = document.getElementById("concept-sections");
-  week.concept.sections.forEach((s) => {
-    const div = document.createElement("div");
-    div.className = "concept-section";
-    div.innerHTML = `<h3>${AIPM.escapeHtml(s.heading)}</h3><p>${AIPM.escapeHtml(s.body)}</p>`;
-    conceptEl.appendChild(div);
-  });
+  document.getElementById("week-intro").textContent = week.intro;
 
   document.getElementById("scenario-company").textContent = week.scenario.company;
   document.getElementById("scenario-context").textContent = week.scenario.context;
   document.getElementById("scenario-brief").textContent = week.scenario.brief;
 
-  document.getElementById("exercise-instructions").textContent = week.exercise.instructions;
-
   const answers = AIPM.getAnswers(weekId);
   const formEl = document.getElementById("exercise-form");
-  week.exercise.prompts.forEach((field) => {
-    const wrap = document.createElement("div");
-    wrap.className = "field";
-    const inputTag = field.type === "text"
-      ? `<input type="text" id="field-${field.id}" placeholder="${AIPM.escapeHtml(field.placeholder || "")}" />`
-      : `<textarea id="field-${field.id}" placeholder="${AIPM.escapeHtml(field.placeholder || "")}"></textarea>`;
-    wrap.innerHTML = `
-      <label class="field-label" for="field-${field.id}">${AIPM.escapeHtml(field.label)}</label>
-      <p class="help">${AIPM.escapeHtml(field.help)}</p>
-      ${inputTag}
+
+  week.sections.forEach((section, i) => {
+    const card = document.createElement("div");
+    card.className = "card section-card";
+
+    const diagramHtml = section.example.diagramSvg
+      ? `<div class="diagram">${section.example.diagramSvg}</div>`
+      : "";
+
+    const inputTag = section.field.type === "text"
+      ? `<input type="text" id="field-${section.id}" placeholder="${AIPM.escapeHtml(section.field.placeholder || "")}" />`
+      : `<textarea id="field-${section.id}" placeholder="${AIPM.escapeHtml(section.field.placeholder || "")}"></textarea>`;
+
+    card.innerHTML = `
+      <div class="section-num">${String(i + 1).padStart(2, "0")} / ${String(week.sections.length).padStart(2, "0")}</div>
+      <h3>${AIPM.escapeHtml(section.heading)}</h3>
+      <p class="learning">${AIPM.escapeHtml(section.learning)}</p>
+      <div class="example-block">
+        <div class="block-label">Example</div>
+        <p>${AIPM.escapeHtml(section.example.text)}</p>
+        ${diagramHtml}
+      </div>
+      <div class="field">
+        <div class="block-label">Your turn</div>
+        <label class="field-label" for="field-${section.id}">${AIPM.escapeHtml(section.field.label)}</label>
+        <p class="help">${AIPM.escapeHtml(section.field.help)}</p>
+        ${inputTag}
+      </div>
     `;
-    formEl.appendChild(wrap);
-    const inputEl = wrap.querySelector("textarea, input");
-    inputEl.value = answers[field.id] || "";
+    formEl.appendChild(card);
+    const inputEl = card.querySelector("textarea, input");
+    inputEl.value = answers[section.id] || "";
   });
 
   function collectAnswers() {
     const result = {};
-    week.exercise.prompts.forEach((field) => {
-      const el = document.getElementById(`field-${field.id}`);
-      result[field.id] = el.value;
+    week.sections.forEach((section) => {
+      const el = document.getElementById(`field-${section.id}`);
+      result[section.id] = el.value;
     });
     return result;
   }
 
-  const fieldIds = week.exercise.prompts.map((f) => f.id);
+  const fieldIds = week.sections.map((s) => s.id);
   const statusEl = document.getElementById("save-status");
   function save(showStatus) {
     AIPM.saveAnswers(weekId, collectAnswers());

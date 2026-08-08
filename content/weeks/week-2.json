@@ -4,68 +4,84 @@
   "title": "Prompting & Spec-Writing",
   "tagline": "Turn a vague ask into a structured prompt an AI tool can actually execute against.",
   "timeEstimate": "~25 min",
-  "concept": {
-    "intro": "A PRD written for a human engineer assumes a lot of shared context — team conventions, prior conversations, 'you know what I mean.' A prompt written for an AI tool can't assume any of that. The skill isn't writing longer specs, it's writing specs that don't rely on anything the reader hasn't been told.",
-    "sections": [
-      {
-        "heading": "The five parts of a structured prompt",
-        "body": "Role — who the AI should act as. Context — the situation, in full, with nothing implied. Task — the specific thing to produce, stated as an instruction, not a question. Constraints — what it must not do, and any format or scope limits. Output format — exactly what the result should look like, so you're not parsing free text by hand."
-      },
-      {
-        "heading": "Vague asks fail quietly",
-        "body": "'Help me improve our returns flow with AI' will produce something — just not something useful, and you won't immediately know why. A vague prompt doesn't error out; it just gives you a plausible-sounding, low-value answer that takes real time to notice is off-target."
-      },
-      {
-        "heading": "Treat the prompt as a spec, not a one-off message",
-        "body": "A good prompt is a reusable artifact. Save it, refine it, hand it to a teammate. If you find yourself rewriting the same context every time you ask for something similar, that's a sign the prompt should become a template — which is exactly the artifact this exercise produces."
-      }
-    ]
-  },
+  "intro": "A PRD written for a human engineer assumes a lot of shared context — team conventions, prior conversations, 'you know what I mean.' A prompt written for an AI tool can't assume any of that. The skill isn't writing longer specs, it's writing specs that don't rely on anything the reader hasn't been told.",
   "scenario": {
-    "company": "Northwind Gear Co.",
-    "context": "A stakeholder has asked, in Slack: 'Can we use AI to make the returns process easier for the support team?' That's the entire brief you were given.",
-    "brief": "Your job is to turn that one-line ask into a structured prompt you could actually run against an AI tool — either to draft a first-pass PRD section, or to have the AI draft sample Returns Assistant responses for you to evaluate. Assume the AI has no memory of anything except what you put in the prompt."
+    "company": "Equifax Workforce Solutions — I-9 & Onboarding",
+    "context": "A stakeholder has asked, in Slack: 'Can we use AI to make I-9 review easier for the Meridian Logistics HR team?' That's the entire brief you were given. (The same vague-ask problem shows up constantly across Employer Services — 'can AI help with offboarding paperwork' is the exact same shape of ask, just on a different product line.)",
+    "brief": "Your job is to turn that one-line ask into a structured prompt you could actually run against an AI tool — either to draft a first-pass PRD section, or to have the AI draft sample I-9 Completion Assistant flags for you to evaluate. Assume the AI has no memory of anything except what you put in the prompt."
   },
-  "exercise": {
-    "instructions": "Fill in each part of the structured prompt below for the Returns Assistant scenario. Then, if you'd like, paste the assembled prompt (shown after you save) into Claude on a personal account — using only this fictional Northwind scenario, never real data — to see what it produces.",
-    "prompts": [
-      {
-        "id": "role",
-        "label": "Role",
-        "help": "Who should the AI act as? Be specific — 'a customer support policy assistant for an outdoor gear retailer' beats 'a helpful assistant.'",
+  "sections": [
+    {
+      "id": "role",
+      "heading": "Role",
+      "learning": "Who should the AI act as? Be specific — 'an I-9 compliance assistant for a logistics employer' beats 'a helpful assistant.' The role sets the vocabulary and judgment the rest of the prompt can lean on.",
+      "example": {
+        "text": "You are an I-9 employment-eligibility compliance assistant supporting HR administrators at Meridian Logistics, a trucking and logistics employer using Equifax Workforce Solutions' I-9 & Onboarding product."
+      },
+      "field": {
+        "label": "Your turn: Role",
+        "help": "Who should the AI act as for the I-9 Completion Assistant prompt?",
         "type": "text",
-        "placeholder": "e.g. You are a customer support assistant for Northwind Gear Co., an outdoor equipment retailer."
+        "placeholder": "e.g. You are an I-9 compliance assistant for..."
+      }
+    },
+    {
+      "id": "context",
+      "heading": "Context",
+      "learning": "State the full situation. What does the AI need to know that a human teammate would already have picked up from context? Nothing implied, nothing assumed.",
+      "example": {
+        "text": "Federal law requires Section 1 of Form I-9 completed by the employee's first day, and Section 2 completed by the employer within 3 business days, verified against original supporting documents (e.g., passport, or driver's license plus Social Security card). A new hire has submitted a completed I-9 and photos of their supporting documents."
       },
-      {
-        "id": "context",
-        "label": "Context",
-        "help": "State the full situation. What does the AI need to know that a human teammate would already have picked up from context?",
+      "field": {
+        "label": "Your turn: Context",
+        "help": "State the full situation the AI needs, with nothing implied.",
         "type": "textarea",
-        "placeholder": "e.g. Northwind's return policy allows returns within 60 days with a receipt, except for used climbing safety gear, which is non-returnable. A customer has submitted a return request with a stated reason."
+        "placeholder": "Include the relevant compliance rule and what's been submitted."
+      }
+    },
+    {
+      "id": "task",
+      "heading": "Task",
+      "learning": "State the instruction, not a question. What exact thing should it produce?",
+      "example": {
+        "text": "Compare the submitted I-9 fields and document images against federal I-9 requirements. List every field that is missing, inconsistent, or backed by an expired document, and state which specific requirement each issue violates."
       },
-      {
-        "id": "task",
-        "label": "Task",
-        "help": "State the instruction, not a question. What exact thing should it produce?",
+      "field": {
+        "label": "Your turn: Task",
+        "help": "State the instruction as a command, not a question.",
         "type": "textarea",
-        "placeholder": "e.g. Draft a response to the customer that either approves the return with next steps, or explains why it doesn't qualify, citing the specific policy line."
+        "placeholder": "e.g. Compare X against Y and list..."
+      }
+    },
+    {
+      "id": "constraints",
+      "heading": "Constraints",
+      "learning": "What must it never do? What's out of scope? Vague asks fail quietly — a vague prompt won't error out, it'll just produce a plausible-sounding, low-value answer that takes real time to notice is off-target. Constraints are what prevent that.",
+      "example": {
+        "text": "Never state that a document is valid or invalid — only that it matches or doesn't match federal requirements as described. Never contact the new hire directly; output is for HR admin review only. If a document type isn't recognized, flag for manual review rather than guessing."
       },
-      {
-        "id": "constraints",
-        "label": "Constraints",
-        "help": "What must it never do? What's out of scope?",
+      "field": {
+        "label": "Your turn: Constraints",
+        "help": "What must the AI never do, or what's explicitly out of scope?",
         "type": "textarea",
-        "placeholder": "e.g. Never approve returns over $500 without flagging for human sign-off. Never state a policy that isn't in the provided policy text. Keep the tone warm but concise."
+        "placeholder": "List the hard no's."
+      }
+    },
+    {
+      "id": "output_format",
+      "heading": "Output format",
+      "learning": "What should the result look like, structurally? A good prompt is a reusable artifact — save it, refine it, hand it to a teammate. If you find yourself rewriting the same context every time, that's a sign the prompt should become a template, which is exactly what this exercise produces.",
+      "example": {
+        "text": "A bulleted list of issues found, each with: the I-9 field or document affected, the specific requirement it fails to meet, and a suggested next step for the HR admin (e.g., 'request updated document,' 'confirm with employee')."
       },
-      {
-        "id": "output_format",
-        "label": "Output format",
+      "field": {
+        "label": "Your turn: Output format",
         "help": "What should the result look like structurally?",
         "type": "textarea",
-        "placeholder": "e.g. A short customer-facing message, followed by a one-line internal note stating which policy section was cited and whether escalation is needed."
+        "placeholder": "Describe the exact shape of the output."
       }
-    ]
-  },
-  "artifactFilename": "week-2-northwind-returns-assistant-prompt-template.md",
-  "artifactTemplate": "# Structured Prompt Template — Northwind Returns Assistant\n\n**Built by:** {{__name__}}\n**Date:** {{__date__}}\n\n## Role\n{{role}}\n\n## Context\n{{context}}\n\n## Task\n{{task}}\n\n## Constraints\n{{constraints}}\n\n## Output format\n{{output_format}}\n\n---\n\n## Assembled prompt (copy this into an AI tool)\n\n{{role}}\n\n{{context}}\n\n{{task}}\n\nConstraints:\n{{constraints}}\n\nRespond in this format:\n{{output_format}}\n\n---\n_Template from the AI PM Training Program, Week 2: Prompting & Spec-Writing. Swap in a real (non-sensitive) scenario and reuse this structure._\n"
+    }
+  ],
+  "artifactFilename": "week-2-i9-completion-assistant-prompt-template.md",
+  "artifactTemplate": "# Structured Prompt Template — I-9 Completion Assistant\n\n**Built by:** {{__name__}}\n**Date:** {{__date__}}\n\n## Role\n{{role}}\n\n## Context\n{{context}}\n\n## Task\n{{task}}\n\n## Constraints\n{{constraints}}\n\n## Output format\n{{output_format}}\n\n---\n\n## Assembled prompt (copy this into an AI tool)\n\n{{role}}\n\n{{context}}\n\n{{task}}\n\nConstraints:\n{{constraints}}\n\nRespond in this format:\n{{output_format}}\n\n---\n_Template from the AI PM Training Program, Week 2: Prompting & Spec-Writing. Swap in a real (non-sensitive) scenario and reuse this structure._\n"
 }

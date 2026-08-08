@@ -23,6 +23,7 @@ const MIME_TYPES = {
   ".json": "application/json; charset=utf-8",
   ".svg": "image/svg+xml",
   ".ico": "image/x-icon",
+  ".png": "image/png",
 };
 
 function safeJoin(baseDir, requestPath) {

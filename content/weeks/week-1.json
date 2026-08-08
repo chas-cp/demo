@@ -4,69 +4,70 @@
   "title": "Foundations",
   "tagline": "Score an AI feature idea against value, viability, feasibility, and usability — reframed for AI.",
   "timeEstimate": "~25 min",
-  "concept": {
-    "intro": "You already know value, viability, feasibility, and usability. Nothing about those four lenses changes when the feature involves AI — but each one now has an AI-specific question hiding inside it that classic PM training never had to ask.",
-    "sections": [
-      {
-        "heading": "Value — is AI actually the right mechanism?",
-        "body": "The bar is the same: does this solve a real problem for a real user? What's new is a second check — is AI the right way to solve it, or is it the fashionable way? A rules engine or a simple form is sometimes the better answer. 'We could use AI here' is not the same claim as 'AI is the best way to solve this.'"
-      },
-      {
-        "heading": "Viability — cost of inference, not just cost of build",
-        "body": "Classic viability asks whether the business case closes. AI viability adds a cost that scales with usage: every model call has a marginal cost (tokens in, tokens out). A feature that's cheap to build can still be expensive to run at scale. You also now have a build-vs-buy-vs-prompt decision — do you fine-tune a model, call a vendor API, or just write a very good prompt against an existing model?"
-      },
-      {
-        "heading": "Feasibility — model limits, data readiness, and evals before code",
-        "body": "Feasibility used to mostly mean engineering capacity. Now it also means: do we have the data this needs, and is it clean enough to use? Can the model reliably do this task at all? And critically — how will we know if it's working? Eval-driven development means defining your success criteria and test cases *before* you build, not writing a rubric after something ships and looks wrong."
-      },
-      {
-        "heading": "Usability — designing for the moment the model is wrong",
-        "body": "Every AI feature will sometimes be wrong. Usability now includes: does the user know when to trust the output? Is there a graceful way to correct it? Is there a clear point where a human needs to step back in? An AI feature with no visible 'this might be wrong, here's how to fix it' path is a usability gap, not just an accuracy gap."
-      },
-      {
-        "heading": "Two more lenses you'll build in later weeks",
-        "body": "Autonomy level (how much can the AI decide on its own — you'll use this in Week 3) and context engineering (the constraint file that keeps an AI agent inside scope — also Week 3) round out the picture. This week is just the four classics, sharpened."
-      }
-    ]
-  },
+  "intro": "You already know value, viability, feasibility, and usability. Nothing about those four lenses changes when a feature involves AI — but each one now hides an AI-specific question that classic PM training never had to ask. Below, each lens gets a concise explanation, a worked example on a real Employer Services feature, and then your turn.",
   "scenario": {
-    "company": "Northwind Gear Co.",
-    "context": "Northwind Gear Co. is a fictional outdoor-gear e-commerce retailer. Customer support is spending significant time drafting return-approval responses by hand, checking each request against a return policy document.",
-    "brief": "Feature idea under review: an 'AI Returns Assistant' that reads a customer's return request and Northwind's return policy, then drafts a response — either approving the return with instructions, or explaining why it doesn't qualify. A human support agent reviews and sends every drafted response before it goes out."
+    "company": "Equifax Workforce Solutions — I-9 & Onboarding",
+    "context": "Meridian Logistics (a fictional 3,400-employee trucking and logistics company) is a customer of Equifax's I-9 & Onboarding product. Its HR team manually reviews every new hire's Form I-9 and supporting documents against federal employment-eligibility rules before each hire's compliance deadline — a process prone to missed deadlines and inconsistent checks across a high-volume, high-turnover workforce.",
+    "brief": "Feature idea under review: an AI I-9 Completion Assistant that reads a new hire's uploaded I-9 and supporting documents, flags missing or inconsistent fields against federal requirements, and drafts a reminder to the new hire or HR admin ahead of the compliance deadline. A human HR admin reviews and approves every flag before anything reaches the employee."
   },
-  "exercise": {
-    "instructions": "Score the AI Returns Assistant idea against each of the four lenses below. One or two sentences of rationale per lens is enough — the goal is the habit of asking the AI-specific question, not a long essay.",
-    "prompts": [
-      {
-        "id": "value",
-        "label": "Value",
-        "help": "Is AI the right mechanism here, or would a simpler tool (e.g. a decision-tree form) solve this just as well?",
-        "type": "textarea",
-        "placeholder": "e.g. Return policy has enough exceptions and free-text nuance that a rules engine would be brittle. AI drafting, human approving, is a reasonable fit because..."
+  "sections": [
+    {
+      "id": "value",
+      "heading": "Value",
+      "learning": "Is AI the right mechanism here, or would a simpler tool — a deadline-tracking checklist, say — solve this just as well? The bar is the same as any feature: does it solve a real problem for a real user. AI is worth it when the judgment involved is genuinely hard to encode as rules; it's overkill when a simple form would do (compare a straightforward eligibility-matching tool like Work Opportunity Tax Credit screening, where rules alone often get you most of the way).",
+      "example": {
+        "text": "Meridian's HR team handles roughly 40 new hires a week across a dozen sites. A checklist alone won't catch inconsistent handwriting between Section 1 and a supporting document, or a document that's technically present but expired — exactly the errors that trigger compliance failures. Reading and cross-checking documents is a judgment call a rules checklist can't make; that's where AI earns its place here."
       },
-      {
-        "id": "viability",
-        "label": "Viability",
-        "help": "What does this cost to run at Northwind's support volume, and is prompting an existing model enough, or does this need something heavier?",
+      "field": {
+        "label": "Your turn: Value",
+        "help": "Is AI the right mechanism for the I-9 Completion Assistant, or would something simpler work as well?",
         "type": "textarea",
-        "placeholder": "e.g. At ~2,000 return requests/week, per-call cost is low relative to agent time saved. A well-prompted existing model should be sufficient — no fine-tuning needed to start."
-      },
-      {
-        "id": "feasibility",
-        "label": "Feasibility",
-        "help": "Is the policy data clean enough to ground the model? What would you test before trusting this in production?",
-        "type": "textarea",
-        "placeholder": "e.g. Policy doc needs to be the single source of truth and kept current. Before launch, run 50 historical return requests through it and compare drafts to what agents actually decided."
-      },
-      {
-        "id": "usability",
-        "label": "Usability",
-        "help": "How does a support agent know when to trust a draft versus double-check it? What's the correction path?",
-        "type": "textarea",
-        "placeholder": "e.g. Every draft shows the policy section it cited, so the agent can verify at a glance. Anything involving a VIP account or an amount over $500 is flagged for closer review before sending."
+        "placeholder": "State the judgment call AI is making here that a simpler tool couldn't."
       }
-    ]
-  },
-  "artifactFilename": "week-1-northwind-returns-assistant-scorecard.md",
-  "artifactTemplate": "# AI Feature Scorecard — Northwind Gear Co. Returns Assistant\n\n**Feature:** AI Returns Assistant\n**Scored by:** {{__name__}}\n**Date:** {{__date__}}\n\n## Value\nIs AI the right mechanism?\n\n{{value}}\n\n## Viability\nWhat does this cost to run, and what's the right build approach?\n\n{{viability}}\n\n## Feasibility\nIs the data ready, and how would you prove this works before shipping?\n\n{{feasibility}}\n\n## Usability\nHow does a human know when to trust it, and what's the correction path?\n\n{{usability}}\n\n---\n_Template from the AI PM Training Program, Week 1: Foundations. Reuse this scorecard structure on a real feature idea._\n"
+    },
+    {
+      "id": "viability",
+      "heading": "Viability",
+      "learning": "Classic viability asks whether the business case closes. AI viability adds a cost that scales with usage — every model call has a marginal cost. A feature that's cheap to build can still be expensive to run at scale, and you now have a build-vs-buy-vs-prompt decision: fine-tune a model, call a vendor API, or just write a very good prompt against an existing model.",
+      "example": {
+        "text": "At Meridian's volume (~40 new hires/week, roughly 2-3 documents each), per-document inference cost is small next to the HR-hours saved on manual review. A well-prompted existing model should be sufficient to start — no fine-tuning needed until we have a large enough set of flagged/unflagged outcomes to justify it."
+      },
+      "field": {
+        "label": "Your turn: Viability",
+        "help": "What does this cost to run at Meridian's volume, and is prompting an existing model enough, or does this need something heavier?",
+        "type": "textarea",
+        "placeholder": "Estimate the scale, and name the build-vs-buy-vs-prompt call."
+      }
+    },
+    {
+      "id": "feasibility",
+      "heading": "Feasibility",
+      "learning": "Feasibility used to mostly mean engineering capacity. Now it also means: do we have the data this needs, and is it clean enough to use? Can the model reliably do this task at all? Eval-driven development means defining your success criteria and test cases before you build, not writing a rubric after something ships and looks wrong.",
+      "example": {
+        "text": "Federal I-9 requirements are well documented and stable, which helps. Before trusting this in production, we'd run the assistant against 100 historical Meridian I-9 packets with known outcomes (approved, corrected, rejected) and check that it flags the same issues an HR admin already caught — and doesn't invent new ones."
+      },
+      "field": {
+        "label": "Your turn: Feasibility",
+        "help": "Is the data ready, and how would you prove this works before shipping it?",
+        "type": "textarea",
+        "placeholder": "Name the test set you'd build and what 'passing' would look like."
+      }
+    },
+    {
+      "id": "usability",
+      "heading": "Usability",
+      "learning": "Every AI feature will sometimes be wrong. Usability now includes: does the user know when to trust the output? Is there a graceful way to correct it? An AI feature with no visible 'this might be wrong, here's how to fix it' path is a usability gap, not just an accuracy gap.",
+      "example": {
+        "text": "Every flag the assistant raises shows the specific I-9 field and the federal rule it's checking against, so an HR admin can verify at a glance instead of taking it on faith. Anything involving a document type the model hasn't seen before, or a new hire flagged in a prior audit, routes to manual review instead of an automated flag."
+      },
+      "field": {
+        "label": "Your turn: Usability",
+        "help": "How does an HR admin know when to trust a flag versus double-check it? What's the correction path?",
+        "type": "textarea",
+        "placeholder": "Describe how trust is shown, and what triggers a human-only path."
+      }
+    }
+  ],
+  "artifactFilename": "week-1-i9-completion-assistant-scorecard.md",
+  "artifactTemplate": "# AI Feature Scorecard — I-9 Completion Assistant (Meridian Logistics)\n\n**Scored by:** {{__name__}}\n**Date:** {{__date__}}\n\n## Value\nIs AI the right mechanism?\n\n{{value}}\n\n## Viability\nWhat does this cost to run, and what's the right build approach?\n\n{{viability}}\n\n## Feasibility\nIs the data ready, and how would you prove this works before shipping?\n\n{{feasibility}}\n\n## Usability\nHow does a human know when to trust it, and what's the correction path?\n\n{{usability}}\n\n---\n_Template from the AI PM Training Program, Week 1: Foundations. Reuse this scorecard structure on a real feature idea._\n"
 }

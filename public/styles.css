@@ -1,35 +1,44 @@
+/* Palette sampled directly from Equifax's internal template (Corp_Template_INTERNAL.pptx):
+   brand red confirmed via logo pixel sample (#9E1B32, matches theme accent2);
+   charcoal/slate/light-grey from the "Simple Light" theme; Arial is the only
+   typeface defined in either theme (major + minor), so it carries both headings
+   and body here rather than a separate display face. */
 :root {
-  --paper: #F1F2ED;
-  --paper-raised: #FBFBF9;
-  --ink: #1C2B2A;
-  --muted: #5B6660;
-  --line: #D8DAD1;
-  --line-strong: #B9BEB4;
-  --accent: #2B6E63;
-  --accent-soft: #E3ECE8;
-  --warn: #B9702F;
-  --warn-soft: #F5E9DA;
-  --good: #2B6E63;
-  --good-soft: #E3ECE8;
-  --code-bg: #E9EAE3;
-  --shadow: 0 1px 2px rgba(28,43,42,0.06), 0 6px 20px rgba(28,43,42,0.05);
+  --paper: #FFFFFF;
+  --paper-raised: #FAFAFA;
+  --ink: #333E48;
+  --muted: #5F6A72;
+  --line: #E7E7E7;
+  --line-strong: #C7CBCD;
+  --accent: #9E1B32;
+  --accent-soft: #F5E6E9;
+  --accent-ink: #FFFFFF;
+  --warn: #E77204;
+  --warn-soft: #FCEBD9;
+  --good: #45842A;
+  --good-soft: #E7F0E2;
+  --info: #007298;
+  --code-bg: #F1F1EF;
+  --shadow: 0 1px 2px rgba(51,62,72,0.07), 0 6px 20px rgba(51,62,72,0.06);
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --paper: #131C1B;
-    --paper-raised: #182322;
-    --ink: #E7EAE5;
-    --muted: #9AA6A0;
-    --line: #2B3836;
-    --line-strong: #3B4A47;
-    --accent: #6DBBA9;
-    --accent-soft: #1E332E;
-    --warn: #E0995C;
-    --warn-soft: #33291D;
-    --good: #6DBBA9;
-    --good-soft: #1E332E;
-    --code-bg: #1C2725;
+    --paper: #1B2126;
+    --paper-raised: #232A30;
+    --ink: #EDEEEF;
+    --muted: #A7AFB4;
+    --line: #38414A;
+    --line-strong: #4A5560;
+    --accent: #D8546A;
+    --accent-soft: #3A222A;
+    --accent-ink: #1B2126;
+    --warn: #F0A24B;
+    --warn-soft: #3A2C18;
+    --good: #7BC15E;
+    --good-soft: #223420;
+    --info: #4FB3D9;
+    --code-bg: #20262B;
     --shadow: 0 1px 2px rgba(0,0,0,0.3), 0 10px 30px rgba(0,0,0,0.35);
   }
 }
@@ -39,15 +48,15 @@
 body {
   background: var(--paper);
   color: var(--ink);
-  font-family: -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, ui-sans-serif, sans-serif;
+  font-family: Arial, "Helvetica Neue", Helvetica, ui-sans-serif, sans-serif;
   font-size: 16px;
   line-height: 1.6;
   margin: 0;
 }
 
 h1, h2, h3 {
-  font-family: Georgia, "Iowan Old Style", "Palatino Linotype", "Times New Roman", serif;
-  font-weight: 400;
+  font-family: Arial, "Helvetica Neue", Helvetica, ui-sans-serif, sans-serif;
+  font-weight: 700;
   text-wrap: balance;
 }
 
@@ -64,19 +73,35 @@ a:focus-visible, button:focus-visible, [tabindex]:focus-visible, textarea:focus-
 .wrap {
   max-width: 760px;
   margin: 0 auto;
-  padding: 48px 24px 96px;
+  padding: 40px 24px 96px;
 }
-.wrap.wrap-wide { max-width: 920px; }
+.wrap.wrap-wide { max-width: 940px; }
+
+/* ---- brand lockup ---- */
+.brand-lockup {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 28px;
+}
+.brand-lockup img { height: 20px; width: auto; display: block; }
+.brand-lockup .divider { width: 1px; height: 18px; background: var(--line-strong); }
+.brand-lockup .product-name {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: var(--muted);
+}
 
 header.top {
-  margin-bottom: 40px;
+  margin-bottom: 36px;
 }
 header.top .eyebrow {
-  font-family: "SF Mono", "Cascadia Code", "Roboto Mono", Consolas, ui-monospace, monospace;
   font-size: 12px;
-  letter-spacing: 0.08em;
+  font-weight: 700;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
-  color: var(--muted);
+  color: var(--accent);
   margin-bottom: 10px;
 }
 header.top a.back {
@@ -86,8 +111,8 @@ header.top a.back {
   text-decoration: none;
   margin-bottom: 18px;
 }
-header.top a.back:hover { color: var(--ink); }
-header.top h1 { font-size: 30px; margin: 0 0 12px; }
+header.top a.back:hover { color: var(--accent); }
+header.top h1 { font-size: 28px; margin: 0 0 12px; letter-spacing: -0.01em; }
 header.top p.dek { color: var(--muted); font-size: 16px; max-width: 60ch; margin: 0; }
 
 .card {
@@ -106,12 +131,11 @@ header.top p.dek { color: var(--muted); font-size: 16px; max-width: 60ch; margin
   margin-bottom: 32px;
 }
 .boundary .label {
-  font-family: "SF Mono", "Cascadia Code", "Roboto Mono", Consolas, ui-monospace, monospace;
   font-size: 11px;
-  text-transform: uppercase;
-  letter-spacing: 0.07em;
-  color: var(--warn);
   font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--warn);
   margin-bottom: 6px;
 }
 .boundary p { margin: 0; font-size: 14px; }
@@ -121,7 +145,7 @@ header.top p.dek { color: var(--muted); font-size: 16px; max-width: 60ch; margin
   display: flex;
   align-items: center;
   gap: 10px;
-  margin-bottom: 32px;
+  margin-bottom: 8px;
   font-size: 14px;
 }
 .name-field label { color: var(--muted); }
@@ -143,16 +167,15 @@ header.top p.dek { color: var(--muted); font-size: 16px; max-width: 60ch; margin
   gap: 10px;
 }
 .week-card {
-  display: block;
+  display: flex;
   text-decoration: none;
   color: inherit;
   padding: 18px 20px;
-  display: flex;
   align-items: center;
   gap: 16px;
   transition: border-color 0.15s ease;
 }
-.week-card:hover { border-color: var(--line-strong); }
+.week-card:hover { border-color: var(--accent); }
 .week-card .idx {
   font-family: "SF Mono", "Cascadia Code", "Roboto Mono", Consolas, ui-monospace, monospace;
   font-size: 13px;
@@ -174,9 +197,9 @@ header.top p.dek { color: var(--muted); font-size: 16px; max-width: 60ch; margin
 
 .pill {
   font-size: 11px;
-  font-weight: 600;
+  font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.03em;
   padding: 3px 9px;
   border-radius: 999px;
   white-space: nowrap;
@@ -205,23 +228,19 @@ header.top p.dek { color: var(--muted); font-size: 16px; max-width: 60ch; margin
 }
 
 /* ---- week page ---- */
-section.concept, section.scenario, section.exercise { margin-bottom: 40px; }
-section h2 { font-size: 21px; margin: 0 0 6px; }
+section.intro-block, section.scenario, section.sections { margin-bottom: 36px; }
+section h2 { font-size: 20px; margin: 0 0 6px; }
 section > p.lede { color: var(--muted); margin: 0 0 20px; }
-
-.concept-section { margin-bottom: 20px; }
-.concept-section h3 { font-size: 15.5px; margin: 0 0 6px; font-family: inherit; font-weight: 700; }
-.concept-section p { margin: 0; color: var(--ink); }
 
 .scenario-card {
   padding: 18px 20px;
   margin-bottom: 4px;
 }
 .scenario-card .company {
-  font-family: "SF Mono", "Cascadia Code", "Roboto Mono", Consolas, ui-monospace, monospace;
   font-size: 11px;
+  font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.05em;
   color: var(--accent);
   margin-bottom: 8px;
 }
@@ -229,7 +248,46 @@ section > p.lede { color: var(--muted); margin: 0 0 20px; }
 .scenario-card p:last-child { margin-bottom: 0; }
 .scenario-card .brief { white-space: pre-line; }
 
-.field { margin-bottom: 22px; }
+/* ---- section card: learning -> example -> your answer ---- */
+.section-card {
+  padding: 22px 22px 24px;
+  margin-bottom: 18px;
+}
+.section-card .section-num {
+  font-family: "SF Mono", "Cascadia Code", "Roboto Mono", Consolas, ui-monospace, monospace;
+  font-size: 12px;
+  color: var(--accent);
+  font-weight: 700;
+}
+.section-card h3 {
+  font-size: 17px;
+  margin: 2px 0 12px;
+}
+.section-card .learning {
+  font-size: 14.5px;
+  color: var(--ink);
+  margin: 0 0 16px;
+}
+.block-label {
+  font-size: 10.5px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: 6px;
+}
+.example-block {
+  background: var(--accent-soft);
+  border-radius: 6px;
+  padding: 14px 16px;
+  margin-bottom: 18px;
+}
+.example-block .block-label { color: var(--accent); }
+.example-block p { margin: 0; font-size: 14px; color: var(--ink); }
+.example-block .diagram { margin-top: 12px; }
+.example-block .diagram svg { width: 100%; height: auto; display: block; border-radius: 4px; background: var(--paper); }
+
+.field { margin-bottom: 0; }
+.field .block-label { color: var(--muted); }
 .field label.field-label { display: block; font-weight: 700; font-size: 14.5px; margin-bottom: 4px; }
 .field p.help { margin: 0 0 8px; font-size: 13px; color: var(--muted); }
 .field textarea, .field input[type="text"] {
@@ -239,7 +297,7 @@ section > p.lede { color: var(--muted); margin: 0 0 20px; }
   padding: 11px 13px;
   border: 1px solid var(--line-strong);
   border-radius: 6px;
-  background: var(--paper-raised);
+  background: var(--paper);
   color: var(--ink);
   resize: vertical;
 }
@@ -258,14 +316,14 @@ section > p.lede { color: var(--muted); margin: 0 0 20px; }
 button {
   font: inherit;
   font-size: 14.5px;
-  font-weight: 600;
+  font-weight: 700;
   padding: 10px 18px;
   border-radius: 6px;
   border: 1px solid transparent;
   cursor: pointer;
 }
-button.primary { background: var(--accent); color: var(--paper-raised); }
-button.primary:hover { opacity: 0.92; }
+button.primary { background: var(--accent); color: var(--accent-ink); }
+button.primary:hover { opacity: 0.9; }
 button.secondary { background: transparent; border-color: var(--line-strong); color: var(--ink); }
 button.secondary:hover { border-color: var(--accent); color: var(--accent); }
 .save-status { font-size: 13px; color: var(--muted); }
@@ -304,6 +362,7 @@ button.secondary:hover { border-color: var(--accent); color: var(--accent); }
 }
 .glance .cell .k {
   font-size: 10.5px;
+  font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.05em;
   color: var(--muted);
@@ -318,14 +377,14 @@ table { width: 100%; border-collapse: collapse; font-size: 14px; min-width: 640p
 th, td { text-align: left; padding: 11px 14px; border-bottom: 1px solid var(--line); white-space: nowrap; }
 thead th {
   font-size: 10.5px;
+  font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.05em;
   color: var(--muted);
-  font-weight: 600;
   background: var(--accent-soft);
 }
 tbody tr:last-child td { border-bottom: none; }
-td.learner-name { font-weight: 600; white-space: normal; }
+td.learner-name { font-weight: 700; white-space: normal; }
 td.overall { font-family: "SF Mono", "Cascadia Code", "Roboto Mono", Consolas, ui-monospace, monospace; color: var(--muted); }
 
 footer.foot {

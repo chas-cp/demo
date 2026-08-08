@@ -19,7 +19,7 @@
   let completeCount = 0;
 
   weeks.forEach((w, i) => {
-    const fieldIds = (details[i].exercise?.prompts || []).map((p) => p.id);
+    const fieldIds = (details[i].sections || []).map((s) => s.id);
     const status = AIPM.weekStatus(w.id, fieldIds);
     if (status === "complete") completeCount++;
 
