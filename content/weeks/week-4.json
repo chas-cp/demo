@@ -19,6 +19,7 @@
         "text": "New hire's submitted I-9 fields and document images on the left. AI's flagged issues on the right, each showing the specific field, the federal requirement it fails to meet, and a suggested next step. A summary badge at the top shows flag count, or 'No issues found' in the clear case.",
         "diagramSvg": "<svg viewBox='0 0 600 260' xmlns='http://www.w3.org/2000/svg' role='img' aria-label='Wireframe of the incoming submission screen: document panel on the left, flagged issues panel on the right'><rect x='1' y='1' width='598' height='258' rx='6' fill='var(--paper)' stroke='var(--line-strong)'/><rect x='1' y='1' width='598' height='34' rx='6' fill='var(--line)'/><text x='16' y='23' font-family='Arial, sans-serif' font-size='12' font-weight='700' fill='var(--ink)'>I-9 Completion Assistant — Review: J. Alvarez</text><rect x='470' y='9' width='112' height='18' rx='9' fill='var(--warn-soft)'/><text x='526' y='22' font-family='Arial, sans-serif' font-size='10' font-weight='700' fill='var(--warn)' text-anchor='middle'>2 FLAGS FOUND</text><text x='16' y='56' font-family='Arial, sans-serif' font-size='10' font-weight='700' letter-spacing='0.5' fill='var(--muted)'>NEW HIRE SUBMISSION</text><rect x='16' y='64' width='268' height='10' rx='2' fill='var(--line)'/><rect x='16' y='82' width='240' height='10' rx='2' fill='var(--line)'/><rect x='16' y='100' width='268' height='10' rx='2' fill='var(--line)'/><rect x='16' y='118' width='180' height='10' rx='2' fill='var(--line)'/><rect x='16' y='140' width='268' height='90' rx='4' fill='var(--line)' opacity='0.5'/><text x='150' y='188' font-family='Arial, sans-serif' font-size='10' fill='var(--muted)' text-anchor='middle'>document image</text><text x='316' y='56' font-family='Arial, sans-serif' font-size='10' font-weight='700' letter-spacing='0.5' fill='var(--accent)'>AI-FLAGGED ISSUES</text><rect x='316' y='64' width='268' height='46' rx='4' fill='var(--accent-soft)' stroke='var(--accent)'/><text x='328' y='80' font-family='Arial, sans-serif' font-size='10' font-weight='700' fill='var(--ink)'>Section 2 · Document expired</text><text x='328' y='95' font-family='Arial, sans-serif' font-size='9' fill='var(--muted)'>Cites 8 CFR 274a.2 — resubmit needed</text><rect x='316' y='116' width='268' height='46' rx='4' fill='var(--accent-soft)' stroke='var(--accent)'/><text x='328' y='132' font-family='Arial, sans-serif' font-size='10' font-weight='700' fill='var(--ink)'>Section 1 · Name mismatch</text><text x='328' y='147' font-family='Arial, sans-serif' font-size='9' fill='var(--muted)'>Confirm with employee</text></svg>"
       },
+      "pitfall": "Showing only the happy-path empty state and skipping what it looks like at 0 flags, 1 flag, and 10 flags. A summary badge that just says 'FLAGS FOUND' with no count forces the admin to open every case to know how much work is waiting.",
       "field": {
         "label": "Your turn: Screen 1",
         "help": "What does the HR admin see when a new hire's submission with AI flags first appears?",
@@ -33,6 +34,7 @@
       "example": {
         "text": "Each flag is expandable to show the exact comparison the AI made. The admin can mark a flag 'Resolved — requesting new document' or 'Overridden — confirmed correct,' with a required one-line reason on override. Overrides are logged separately from resolutions, so we can track how often the AI's flags don't hold up."
       },
+      "pitfall": "Letting an override happen with no reason captured. If the AI cited a federal requirement and the admin just clicks past it, you've lost the one signal that tells you the citation was wrong — require the reason every time, not just when someone remembers to add one.",
       "field": {
         "label": "Your turn: Screen 2",
         "help": "What can the admin change, and what happens when they resolve or override a flag?",
@@ -43,10 +45,11 @@
     {
       "id": "screen_3",
       "heading": "Screen 3 — Escalation state",
-      "learning": "What does the admin see for a submission that's been routed for manual review (an unrecognized document type, or a hire previously flagged in an audit)?",
+      "learning": "What does the admin see for a submission that's been routed for manual review? Week 3's escalation rules define exactly which cases land here — an unrecognized document type, a prior audit flag, or a receipt/reverification deadline coming due.",
       "example": {
-        "text": "A banner explains why it was routed for manual review. No AI flags are shown as final — instead, the relevant federal requirement text is surfaced as reference material, and the admin works from a blank review form rather than an AI-suggested one."
+        "text": "A banner explains why it was routed for manual review — citing the specific escalation rule that triggered it (e.g., 'reverification due in 45 days'). No AI flags are shown as final — instead, the relevant federal requirement text is surfaced as reference material, and the admin works from a blank review form rather than an AI-suggested one."
       },
+      "pitfall": "Auto-filling the escalation form with the AI's original (now-overridden) guess. The whole point of escalation is that the AI's read is no longer trusted for this case — pre-filling anything from it defeats that.",
       "field": {
         "label": "Your turn: Screen 3",
         "help": "What does the admin see for an escalated submission?",
@@ -61,6 +64,7 @@
       "example": {
         "text": "The override moment (Screen 2) is the one worth testing first — it's where we learn whether admins trust the AI's citations enough to act on them without re-checking the source document themselves, or whether they're overriding out of habit rather than genuine disagreement."
       },
+      "pitfall": "Picking the interaction that's easiest to prototype instead of the one that's riskiest to be wrong about. A polished submission screen doesn't tell you anything you didn't already know — the override moment does.",
       "field": {
         "label": "Your turn: Key interaction",
         "help": "Pick the single most important moment and describe it in more depth than the screens above.",
@@ -75,6 +79,7 @@
       "example": {
         "text": "Act as a product designer. Generate a 3-screen wireframe description for an HR admin tool with these screens and states: [paste the three screens above]. Output as a numbered list of UI elements per screen, no visual design opinions yet."
       },
+      "pitfall": "Asking the AI to also make visual design decisions ('make it look nice') in the same prompt as the structural outline. Separate 'what elements exist and what state are they in' from 'what it looks like' — mixing the two produces a prototype that's polished but structurally wrong.",
       "field": {
         "label": "Your turn: Prompt",
         "help": "Write the prompt you'd use to generate a first-pass mockup from this outline.",

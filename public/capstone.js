@@ -41,6 +41,11 @@
   document.getElementById("whats-next-heading").textContent = capstone.whatsNext.heading;
   document.getElementById("whats-next-thesis").textContent = capstone.whatsNext.thesis;
   document.getElementById("whats-next-note").textContent = capstone.whatsNext.note;
+  if (capstone.whatsNext.diagram) {
+    document.getElementById("whats-next-diagram-wrap").style.display = "";
+    document.getElementById("whats-next-diagram-svg").innerHTML = capstone.whatsNext.diagram.svg;
+    document.getElementById("whats-next-diagram-caption").textContent = capstone.whatsNext.diagram.caption;
+  }
   const mappingTableEl = document.getElementById("whats-next-table");
   capstone.whatsNext.mapping.forEach((row) => {
     const tr = document.createElement("tr");
@@ -58,6 +63,12 @@
   capstone.sections.forEach((section) => {
     const card = document.createElement("div");
     card.className = "card section-card";
+    const pitfallHtml = section.pitfall
+      ? `<div class="pitfall-block">
+          <div class="block-label">Common mistake</div>
+          <p>${AIPM.escapeHtml(section.pitfall)}</p>
+        </div>`
+      : "";
     card.innerHTML = `
       <h3>${AIPM.escapeHtml(section.heading)}</h3>
       <p class="learning">${AIPM.escapeHtml(section.learning)}</p>
@@ -65,6 +76,7 @@
         <div class="block-label">Example</div>
         <p>${AIPM.escapeHtml(section.example.text)}</p>
       </div>
+      ${pitfallHtml}
       <div class="field">
         <div class="block-label">Your turn</div>
         <label class="field-label" for="field-${section.id}">${AIPM.escapeHtml(section.field.label)}</label>

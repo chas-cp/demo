@@ -4,6 +4,8 @@ An in-app, self-paced training program for Equifax Workforce Solutions' Employer
 
 Every exercise runs on a real product area — **I-9 & Onboarding** — building an "AI I-9 Completion Assistant" for a fully fictional customer, **Meridian Logistics**, with fictional data throughout. Other Employer Services lines (WOTC, offboarding, ACA, unemployment cost management, ID Watchdog) show up as secondary examples across the modules. See the data-boundary note on the home page: real work stays in enterprise Gemini; this program is where the habit gets built, safely, on personal AI accounts.
 
+The I-9-specific details in the lessons (the 3-business-day Section 2 deadline, List A vs. List B+C document rules, the 90-day receipt rule, reverification timing, retention duration, document-abuse pitfalls) are grounded in the actual [USCIS Form I-9 instructions](https://www.uscis.gov/i-9-central) and the [M-274 Handbook for Employers](https://www.uscis.gov/i-9-central/form-i-9-resources/handbook-for-employers-m-274) — not invented placeholders.
+
 Styling (color palette, typography, logo) is pulled directly from Equifax's internal template — see [Brand styling](#brand-styling) below.
 
 ## What's in this repo
@@ -27,12 +29,14 @@ Each module in `content/weeks/*.json` has:
 ```
 { id, order, title, tagline, timeEstimate,
   intro,                       // short framing paragraph for the whole module
+  diagram: { svg, caption },   // optional week-level concept diagram, shown before the scenario
   scenario: { company, context, brief },
   sections: [
     { id,                      // used as the answer/template field key
       heading,
       learning,                // concise guidance — the AI-specific question for this lens
       example: { text, diagramSvg? },  // a fully worked example; diagramSvg is optional inline SVG markup
+      pitfall,                 // optional common-mistake callout, shown after the example
       field: { label, help, type, placeholder }  // the learner's own input for this section
     }, ...
   ],
@@ -40,7 +44,9 @@ Each module in `content/weeks/*.json` has:
 }
 ```
 
-The frontend renders one card per section, in order: guidance, then the worked example, then the input — so a PM never has to hold five exercise questions in their head while reading a wall of concept text up top.
+The frontend renders one card per section, in order: guidance, the worked example (with an optional inline diagram), a common-mistake callout, then the input — so a PM never has to hold five exercise questions in their head while reading a wall of concept text up top, and never has to guess at a pitfall that would only show up once it was too late.
+
+Six hand-authored inline-SVG diagrams ground the more spatial concepts: the Value/Usability/Feasibility model within a Viability boundary (Week 1), the anatomy of a structured prompt (Week 2), the L1–L4 autonomy ladder plus an I-9 compliance timeline (Week 3), an HR-admin wireframe (Week 4), the six-stage AI SDLC loop (Week 5), and the orchestrator hub-and-spoke model (Capstone). All of them use CSS custom properties for color, so they redraw correctly in dark mode.
 
 ## How progress works
 

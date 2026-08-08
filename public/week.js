@@ -27,6 +27,12 @@
   document.getElementById("week-tagline").textContent = week.tagline;
   document.getElementById("week-intro").textContent = week.intro;
 
+  if (week.diagram) {
+    document.getElementById("concept-diagram-section").style.display = "";
+    document.getElementById("concept-diagram-svg").innerHTML = week.diagram.svg;
+    document.getElementById("concept-diagram-caption").textContent = week.diagram.caption;
+  }
+
   document.getElementById("scenario-company").textContent = week.scenario.company;
   document.getElementById("scenario-context").textContent = week.scenario.context;
   document.getElementById("scenario-brief").textContent = week.scenario.brief;
@@ -42,6 +48,13 @@
       ? `<div class="diagram">${section.example.diagramSvg}</div>`
       : "";
 
+    const pitfallHtml = section.pitfall
+      ? `<div class="pitfall-block">
+          <div class="block-label">Common mistake</div>
+          <p>${AIPM.escapeHtml(section.pitfall)}</p>
+        </div>`
+      : "";
+
     const inputTag = section.field.type === "text"
       ? `<input type="text" id="field-${section.id}" placeholder="${AIPM.escapeHtml(section.field.placeholder || "")}" />`
       : `<textarea id="field-${section.id}" placeholder="${AIPM.escapeHtml(section.field.placeholder || "")}"></textarea>`;
@@ -55,6 +68,7 @@
         <p>${AIPM.escapeHtml(section.example.text)}</p>
         ${diagramHtml}
       </div>
+      ${pitfallHtml}
       <div class="field">
         <div class="block-label">Your turn</div>
         <label class="field-label" for="field-${section.id}">${AIPM.escapeHtml(section.field.label)}</label>

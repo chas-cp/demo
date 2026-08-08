@@ -4,11 +4,15 @@
   "title": "Foundations",
   "tagline": "Score an AI feature idea against value, viability, feasibility, and usability — reframed for AI.",
   "timeEstimate": "~25 min",
-  "intro": "You already know value, viability, feasibility, and usability. Nothing about those four lenses changes when a feature involves AI — but each one now hides an AI-specific question that classic PM training never had to ask. Below, each lens gets a concise explanation, a worked example on a real Employer Services feature, and then your turn.",
+  "intro": "You already know value, viability, feasibility, and usability. Nothing about those four lenses changes when a feature involves AI — but each one now hides an AI-specific question that classic PM training never had to ask. Below, each lens gets a concise explanation, a worked example on a real Employer Services feature, a common mistake to watch for, and then your turn.",
+  "diagram": {
+    "svg": "<svg viewBox='0 0 640 420' xmlns='http://www.w3.org/2000/svg' role='img' aria-label='Three overlapping circles for Value, Usability, and Feasibility, inside a dashed boundary labeled Viable'><rect x='20' y='15' width='600' height='390' rx='16' fill='none' stroke='var(--line-strong)' stroke-dasharray='6 5'/><text x='320' y='38' font-family='Arial, sans-serif' font-size='11' font-weight='700' letter-spacing='1' fill='var(--muted)' text-anchor='middle'>VIABLE — THE BUSINESS CASE HAS TO CLOSE</text><circle cx='230' cy='190' r='100' fill='var(--accent-soft)' fill-opacity='0.8' stroke='var(--accent)' stroke-width='2'/><circle cx='410' cy='190' r='100' fill='var(--good-soft)' fill-opacity='0.8' stroke='var(--good)' stroke-width='2'/><circle cx='320' cy='290' r='100' fill='var(--warn-soft)' fill-opacity='0.8' stroke='var(--warn)' stroke-width='2'/><text x='170' y='148' font-family='Arial, sans-serif' font-size='13' font-weight='700' fill='var(--ink)' text-anchor='middle'>VALUE</text><text x='170' y='166' font-family='Arial, sans-serif' font-size='11' fill='var(--muted)' text-anchor='middle'>Right mechanism?</text><text x='470' y='148' font-family='Arial, sans-serif' font-size='13' font-weight='700' fill='var(--ink)' text-anchor='middle'>USABILITY</text><text x='470' y='166' font-family='Arial, sans-serif' font-size='11' fill='var(--muted)' text-anchor='middle'>Trusted when wrong?</text><text x='320' y='352' font-family='Arial, sans-serif' font-size='13' font-weight='700' fill='var(--ink)' text-anchor='middle'>FEASIBILITY</text><text x='320' y='370' font-family='Arial, sans-serif' font-size='11' fill='var(--muted)' text-anchor='middle'>Model + data ready?</text><text x='320' y='230' font-family='Arial, sans-serif' font-size='14' font-weight='700' fill='var(--ink)' text-anchor='middle'>Ship it</text></svg>",
+    "caption": "The classic product model — Value, Usability, and Feasibility overlapping — with Viability as the boundary the whole thing has to fit inside, not a fourth circle. AI adds one specific question to each lens; the four sections below walk through them one at a time."
+  },
   "scenario": {
     "company": "Equifax Workforce Solutions — I-9 & Onboarding",
-    "context": "Meridian Logistics (a fictional 3,400-employee trucking and logistics company) is a customer of Equifax's I-9 & Onboarding product. Its HR team manually reviews every new hire's Form I-9 and supporting documents against federal employment-eligibility rules before each hire's compliance deadline — a process prone to missed deadlines and inconsistent checks across a high-volume, high-turnover workforce.",
-    "brief": "Feature idea under review: an AI I-9 Completion Assistant that reads a new hire's uploaded I-9 and supporting documents, flags missing or inconsistent fields against federal requirements, and drafts a reminder to the new hire or HR admin ahead of the compliance deadline. A human HR admin reviews and approves every flag before anything reaches the employee."
+    "context": "Meridian Logistics (a fictional 3,400-employee trucking and logistics company) is a customer of Equifax's I-9 & Onboarding product. Federal law requires a new hire to complete Section 1 of Form I-9 by their first day of work, and requires Meridian's HR team to complete Section 2 — examining the new hire's identity and work-authorization documents — within 3 business days of that start date. Meridian's HR team does that examination by hand today, checking each new hire's documents against the accepted List A (identity + work authorization in one document) or List B plus List C (identity and work authorization as two separate documents) combinations — a process prone to missed 3-day deadlines and inconsistent checks across a high-volume, high-turnover workforce.",
+    "brief": "Feature idea under review: an AI I-9 Completion Assistant that reads a new hire's submitted Section 1 fields and List A/B/C document images, flags anything inconsistent or missing before the 3-business-day Section 2 deadline, and drafts a note for the HR admin explaining exactly what it found. A human HR admin reviews and approves every flag — and completes Section 2 — before anything reaches the employee."
   },
   "sections": [
     {
@@ -16,8 +20,9 @@
       "heading": "Value",
       "learning": "Is AI the right mechanism here, or would a simpler tool — a deadline-tracking checklist, say — solve this just as well? The bar is the same as any feature: does it solve a real problem for a real user. AI is worth it when the judgment involved is genuinely hard to encode as rules; it's overkill when a simple form would do (compare a straightforward eligibility-matching tool like Work Opportunity Tax Credit screening, where rules alone often get you most of the way).",
       "example": {
-        "text": "Meridian's HR team handles roughly 40 new hires a week across a dozen sites. A checklist alone won't catch inconsistent handwriting between Section 1 and a supporting document, or a document that's technically present but expired — exactly the errors that trigger compliance failures. Reading and cross-checking documents is a judgment call a rules checklist can't make; that's where AI earns its place here."
+        "text": "Meridian's HR team handles roughly 40 new hires a week across a dozen sites. A checklist alone won't catch inconsistent handwriting between Section 1 and a List B or C document, or a document that's technically present but expired — exactly the errors that trigger missed 3-business-day deadlines. Reading and cross-checking documents is a judgment call a rules checklist can't make; that's where AI earns its place here."
       },
+      "pitfall": "Treating 'AI can do this' as the same claim as 'AI should do this.' If a fixed rule — is the SSN nine digits, is a required field blank — would catch the error just as reliably, building an AI feature for it only adds cost and a new failure mode without adding judgment.",
       "field": {
         "label": "Your turn: Value",
         "help": "Is AI the right mechanism for the I-9 Completion Assistant, or would something simpler work as well?",
@@ -32,6 +37,7 @@
       "example": {
         "text": "At Meridian's volume (~40 new hires/week, roughly 2-3 documents each), per-document inference cost is small next to the HR-hours saved on manual review. A well-prompted existing model should be sufficient to start — no fine-tuning needed until we have a large enough set of flagged/unflagged outcomes to justify it."
       },
+      "pitfall": "Estimating cost off a demo instead of real volume. A feature that costs pennies per call in testing can add up fast once every one of Meridian's ~40 weekly hires runs 2-3 documents through it, every week, indefinitely — model the cost at 6-12 months of real volume, not day one.",
       "field": {
         "label": "Your turn: Viability",
         "help": "What does this cost to run at Meridian's volume, and is prompting an existing model enough, or does this need something heavier?",
@@ -44,8 +50,9 @@
       "heading": "Feasibility",
       "learning": "Feasibility used to mostly mean engineering capacity. Now it also means: do we have the data this needs, and is it clean enough to use? Can the model reliably do this task at all? Eval-driven development means defining your success criteria and test cases before you build, not writing a rubric after something ships and looks wrong.",
       "example": {
-        "text": "Federal I-9 requirements are well documented and stable, which helps. Before trusting this in production, we'd run the assistant against 100 historical Meridian I-9 packets with known outcomes (approved, corrected, rejected) and check that it flags the same issues an HR admin already caught — and doesn't invent new ones."
+        "text": "Federal I-9 requirements are well documented and stable (the Form I-9 instructions and the accompanying M-274 Handbook for Employers), and Meridian is already required to retain every completed I-9 for 3 years after hire, or 1 year after termination, whichever is later — so there's a real historical corpus to test against, not just a handful of examples. Before trusting this in production, we'd run the assistant against 100 historical Meridian I-9 packets with known outcomes (approved, corrected via a receipt, rejected) and check it flags the same issues an HR admin already caught — without inventing new ones."
       },
+      "pitfall": "Treating 'it worked on the examples I tried' as proof. A handful of clean cases will pass almost any model — the real test is the messy 10%: an expired List C document, a receipt for a lost document, borderline handwriting. If your test set skips those, you haven't tested the part that actually breaks.",
       "field": {
         "label": "Your turn: Feasibility",
         "help": "Is the data ready, and how would you prove this works before shipping it?",
@@ -60,6 +67,7 @@
       "example": {
         "text": "Every flag the assistant raises shows the specific I-9 field and the federal rule it's checking against, so an HR admin can verify at a glance instead of taking it on faith. Anything involving a document type the model hasn't seen before, or a new hire flagged in a prior audit, routes to manual review instead of an automated flag."
       },
+      "pitfall": "Designing the happy path and forgetting the correction path. The moment an HR admin disagrees with a flag and has no clear way to say so — and have that disagreement recorded — is the moment they stop trusting the tool entirely, even if it's right 95% of the time.",
       "field": {
         "label": "Your turn: Usability",
         "help": "How does an HR admin know when to trust a flag versus double-check it? What's the correction path?",

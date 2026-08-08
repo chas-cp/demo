@@ -286,6 +286,28 @@ section > p.lede { color: var(--muted); margin: 0 0 20px; }
 .example-block .diagram { margin-top: 12px; }
 .example-block .diagram svg { width: 100%; height: auto; display: block; border-radius: 4px; background: var(--paper); }
 
+.pitfall-block {
+  background: var(--warn-soft);
+  border-radius: 6px;
+  padding: 14px 16px;
+  margin-bottom: 18px;
+}
+.pitfall-block .block-label { color: var(--warn); }
+.pitfall-block p { margin: 0; font-size: 14px; color: var(--ink); }
+
+/* ---- week-level concept diagram, shown before the scenario ---- */
+section.concept-diagram { margin-bottom: 36px; }
+section.concept-diagram .diagram-card {
+  padding: 22px 24px 18px;
+}
+section.concept-diagram svg { width: 100%; height: auto; display: block; }
+section.concept-diagram .caption {
+  margin: 14px 0 0;
+  font-size: 13px;
+  color: var(--muted);
+  text-align: center;
+}
+
 .field { margin-bottom: 0; }
 .field .block-label { color: var(--muted); }
 .field label.field-label { display: block; font-weight: 700; font-size: 14.5px; margin-bottom: 4px; }
