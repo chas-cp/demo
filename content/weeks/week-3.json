@@ -10,7 +10,7 @@
     "caption": "The autonomy ladder. The higher the level, the more the PM's job shifts from writing tickets to writing the bounds — allowed actions, forbidden actions, escalation rules — the agent operates inside."
   },
   "scenario": {
-    "company": "Equifax Workforce Solutions — I-9 & Onboarding",
+    "company": "Equifax Workforce Solutions — Onboarding · I-9",
     "context": "Engineering is ready to build the I-9 Completion Assistant using an AI coding agent running at Level 3 (it can write and test code across multiple files, but a human approves before anything merges).",
     "brief": "Before the engineering team starts the agent, they've asked you — the PM — to write the guardrail file that will sit alongside the code and constrain what the agent is allowed to do. This is the file the agent reads before it takes any action."
   },

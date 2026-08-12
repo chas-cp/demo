@@ -6,7 +6,7 @@
   "timeEstimate": "~20 min",
   "intro": "Nothing new to learn this week — just assembly. You've built a scorecard, a prompt template, a guardrail file, a prototype brief, and a review rubric, all for the I-9 Completion Assistant. That's not a coincidence: it's meant to read as one coherent piece of AI PM work when you put it side by side.",
   "scenario": {
-    "company": "Equifax Workforce Solutions — I-9 & Onboarding",
+    "company": "Equifax Workforce Solutions — Onboarding · I-9",
     "context": "This section pulls together what you built in Weeks 1 through 5, automatically, from what's saved in your browser.",
     "brief": "Five separate exercises don't obviously add up to anything. One document that walks a single feature — the I-9 Completion Assistant — from idea, through spec, through guardrails, through prototype, through review rubric, reads as exactly what an AI PM does day to day. Add a short closing reflection, then export the full portfolio piece as one Markdown file."
   },
@@ -30,7 +30,7 @@
     {
       "id": "reflection",
       "heading": "Closing reflection",
-      "learning": "The fastest way to make this stick is to run the same five steps on one real (non-sensitive, or fully within Gemini) feature idea in the next two weeks, before the habit fades — whether that's another I-9 & Onboarding feature, or a different Employer Services line like WOTC screening, offboarding, ACA reporting, unemployment cost management, or ID Watchdog.",
+      "learning": "The fastest way to make this stick is to run the same five steps on one real (non-sensitive, or fully within Gemini) feature idea in the next two weeks, before the habit fades — whether that's another product in the Onboarding category (E-Verify, Onboarding Forms, or WOTC), or a different Employer Services category entirely, like offboarding, ACA reporting, unemployment cost management, or ID Watchdog.",
       "example": {
         "text": "Writing the guardrail file before handing anything to an agent is the habit I'm most likely to keep — I've been skipping straight from idea to ticket, and this gives engineering something concrete to build against. I want to try it next on our ACA reporting assistant, where a bad auto-filed form is a much bigger deal than a bad I-9 flag."
       },

@@ -2,7 +2,7 @@
 
 An in-app, self-paced training program for Equifax Workforce Solutions' Employer Services PMs — new to AI tooling — through five ~25–30 minute weekly modules plus a capstone, building the skills to support an AI software development lifecycle: writing effective AI prompts/specs, authoring guardrail/context files for agentic coding tools, prototyping with AI, and evaluating AI-produced work.
 
-Every exercise runs on a real product area — **I-9 & Onboarding** — building an "AI I-9 Completion Assistant" for a fully fictional customer, **Meridian Logistics**, with fictional data throughout. Other Employer Services lines (WOTC, offboarding, ACA, unemployment cost management, ID Watchdog) show up as secondary examples across the modules. See the data-boundary note on the home page: real work stays in enterprise Gemini; this program is where the habit gets built, safely, on personal AI accounts.
+Every exercise runs on a real product category — **Onboarding**, which includes I-9, E-Verify, Onboarding Forms, and WOTC — building specifically within the **I-9** product (an "AI I-9 Completion Assistant") for a fully fictional customer, **Meridian Logistics**, with fictional data throughout. Other Employer Services categories (offboarding, ACA, unemployment cost management, ID Watchdog) show up as secondary examples across the modules. See the data-boundary note on the home page: real work stays in enterprise Gemini; this program is where the habit gets built, safely, on personal AI accounts.
 
 The I-9-specific details in the lessons (the 3-business-day Section 2 deadline, List A vs. List B+C document rules, the 90-day receipt rule, reverification timing, retention duration, document-abuse pitfalls) are grounded in the actual [USCIS Form I-9 instructions](https://www.uscis.gov/i-9-central) and the [M-274 Handbook for Employers](https://www.uscis.gov/i-9-central/form-i-9-resources/handbook-for-employers-m-274) — not invented placeholders.
 
@@ -46,7 +46,11 @@ Each module in `content/weeks/*.json` has:
 
 The frontend renders one card per section, in order: guidance, the worked example (with an optional inline diagram), a common-mistake callout, then the input — so a PM never has to hold five exercise questions in their head while reading a wall of concept text up top, and never has to guess at a pitfall that would only show up once it was too late.
 
-Six hand-authored inline-SVG diagrams ground the more spatial concepts: the Value/Usability/Feasibility model within a Viability boundary (Week 1), the anatomy of a structured prompt (Week 2), the L1–L4 autonomy ladder plus an I-9 compliance timeline (Week 3), an HR-admin wireframe (Week 4), the six-stage AI SDLC loop (Week 5), and the orchestrator hub-and-spoke model (Capstone). All of them use CSS custom properties for color, so they redraw correctly in dark mode.
+Eight hand-authored inline-SVG diagrams ground the more spatial concepts: the Pragmatic Framework's Strategy-vs-Execution split plus an Urgent/Pervasive/Willing-to-Buy problem-validation model and the Value/Usability/Feasibility solution model within a Viability boundary (Week 1), the anatomy of a structured prompt (Week 2), the L1–L4 autonomy ladder plus an I-9 compliance timeline (Week 3), an HR-admin wireframe (Week 4), the six-stage AI SDLC loop (Week 5), and the orchestrator hub-and-spoke model (Capstone). All of them use CSS custom properties for color, so they redraw correctly in dark mode.
+
+## Product taxonomy
+
+**Onboarding** is the product category, not a product. The specific Equifax Workforce Solutions products inside it are **I-9**, **E-Verify**, **Onboarding Forms**, and **WOTC**. This program's running example — the "AI I-9 Completion Assistant" — is built specifically within the I-9 product; other Onboarding products (and sibling categories like ACA, offboarding, unemployment cost management, and ID Watchdog) show up as secondary examples, correctly scoped as their own products/categories rather than folded into "I-9 & Onboarding" as if it were one thing.
 
 ## How progress works
 

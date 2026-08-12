@@ -10,7 +10,7 @@
     "caption": "The five parts of a structured prompt, in order. Each row below builds one part of this template for the I-9 Completion Assistant."
   },
   "scenario": {
-    "company": "Equifax Workforce Solutions — I-9 & Onboarding",
+    "company": "Equifax Workforce Solutions — Onboarding · I-9",
     "context": "A stakeholder has asked, in Slack: 'Can we use AI to make I-9 review easier for the Meridian Logistics HR team?' That's the entire brief you were given. (The same vague-ask problem shows up constantly across Employer Services — 'can AI help with offboarding paperwork' is the exact same shape of ask, just on a different product line.)",
     "brief": "Your job is to turn that one-line ask into a structured prompt you could actually run against an AI tool — either to draft a first-pass PRD section, or to have the AI draft sample I-9 Completion Assistant flags for you to evaluate. Assume the AI has no memory of anything except what you put in the prompt."
   },
@@ -20,7 +20,7 @@
       "heading": "Role",
       "learning": "Who should the AI act as? Be specific — 'an I-9 compliance assistant for a logistics employer' beats 'a helpful assistant.' The role sets the vocabulary and judgment the rest of the prompt can lean on.",
       "example": {
-        "text": "You are an I-9 employment-eligibility compliance assistant supporting HR administrators at Meridian Logistics, a trucking and logistics employer using Equifax Workforce Solutions' I-9 & Onboarding product."
+        "text": "You are an I-9 employment-eligibility compliance assistant supporting HR administrators at Meridian Logistics, a trucking and logistics employer using the I-9 product within Equifax Workforce Solutions' Onboarding category."
       },
       "pitfall": "Writing 'You are a helpful assistant' and moving on. A vague role gives the model no vocabulary or judgment to lean on — it defaults to generic customer-service phrasing instead of I-9-specific precision, like citing 'Section 2' correctly instead of guessing at what that means.",
       "field": {

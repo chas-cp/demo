@@ -6,7 +6,7 @@
   "timeEstimate": "~30 min",
   "intro": "You don't need to know how to code to get a prototype in front of people this week. What you need is the same PM skill from Week 2 — a structured prompt — pointed at describing screens and states instead of describing a compliance rule.",
   "scenario": {
-    "company": "Equifax Workforce Solutions — I-9 & Onboarding",
+    "company": "Equifax Workforce Solutions — Onboarding · I-9",
     "context": "The I-9 Completion Assistant guardrail file from Week 3 is written. Now design and engineering need to see roughly what the HR-admin-facing tool looks like before committing real build time. (The same outline-first approach applies to any Employer Services admin tool — an Unemployment Cost Management claims-review dashboard would start from the same three questions: what does the admin see, what can they change, and what's the one moment worth testing first.)",
     "brief": "Outline a 3-screen flow for the HR admin's view of the I-9 Completion Assistant: (1) the incoming new-hire submission with the AI's flagged issues, (2) the review/edit screen where the admin resolves or overrides a flag, (3) the escalation state when a submission is routed for manual review."
   },
