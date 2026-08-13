@@ -1,0 +1,98 @@
+{
+  "id": "week-1",
+  "order": 1,
+  "title": "Foundations",
+  "tagline": "Refresh core PM principles: problem validation, then desirability, viability, feasibility, and usability, reframed for AI.",
+  "timeEstimate": "~25 min",
+  "intro": "Before applying an AI lens to anything, it's worth refreshing the general principles that hold regardless of AI: know which part of the PM job you're actually doing, and validate the problem before you validate the solution. Below: a quick refresher on where this program focuses, then problem validation, then the classic desirability/value, viability, feasibility, and usability lens, each with the one AI-specific question it now hides.",
+  "diagram": {
+    "svg": "<svg viewBox='0 0 640 300' xmlns='http://www.w3.org/2000/svg' role='img' aria-label='Strategy versus execution: Market, Focus, and Business columns under Strategy, emphasized as this programs focus; Planning, Programs, Enablement, and Support columns under Execution, de-emphasized'><rect x='20' y='20' width='280' height='220' rx='12' fill='var(--accent-soft)' stroke='var(--accent)' stroke-width='2'/><text x='160' y='42' font-family='&quot;Open Sans&quot;, Arial, sans-serif' font-size='13' font-weight='700' letter-spacing='1' fill='var(--accent)' text-anchor='middle'>STRATEGY</text><text x='160' y='58' font-family='&quot;Open Sans&quot;, Arial, sans-serif' font-size='10' fill='var(--accent)' text-anchor='middle'>This program builds fluency here</text><rect x='32' y='72' width='80' height='150' rx='8' fill='var(--paper)' stroke='var(--accent)'/><text x='72' y='90' font-family='&quot;Open Sans&quot;, Arial, sans-serif' font-size='10' font-weight='700' fill='var(--ink)' text-anchor='middle'>MARKET</text><text x='72' y='112' font-family='&quot;Open Sans&quot;, Arial, sans-serif' font-size='8.5' fill='var(--muted)' text-anchor='middle'>Voice of</text><text x='72' y='124' font-family='&quot;Open Sans&quot;, Arial, sans-serif' font-size='8.5' fill='var(--muted)' text-anchor='middle'>customer</text><text x='72' y='150' font-family='&quot;Open Sans&quot;, Arial, sans-serif' font-size='9' fill='var(--muted)' text-anchor='middle'>Win/loss</text><text x='72' y='162' font-family='&quot;Open Sans&quot;, Arial, sans-serif' font-size='9' fill='var(--muted)' text-anchor='middle'>analysis</text><rect x='120' y='72' width='80' height='150' rx='8' fill='var(--paper)' stroke='var(--accent)'/><text x='160' y='90' font-family='&quot;Open Sans&quot;, Arial, sans-serif' font-size='10' font-weight='700' fill='var(--ink)' text-anchor='middle'>FOCUS</text><text x='160' y='118' font-family='&quot;Open Sans&quot;, Arial, sans-serif' font-size='9' fill='var(--muted)' text-anchor='middle'>Market</text><text x='160' y='130' font-family='&quot;Open Sans&quot;, Arial, sans-serif' font-size='9' fill='var(--muted)' text-anchor='middle'>definition</text><text x='160' y='154' font-family='&quot;Open Sans&quot;, Arial, sans-serif' font-size='9' fill='var(--muted)' text-anchor='middle'>Product</text><text x='160' y='166' font-family='&quot;Open Sans&quot;, Arial, sans-serif' font-size='9' fill='var(--muted)' text-anchor='middle'>roadmap</text><rect x='208' y='72' width='80' height='150' rx='8' fill='var(--paper)' stroke='var(--accent)'/><text x='248' y='90' font-family='&quot;Open Sans&quot;, Arial, sans-serif' font-size='10' font-weight='700' fill='var(--ink)' text-anchor='middle'>BUSINESS</text><text x='248' y='118' font-family='&quot;Open Sans&quot;, Arial, sans-serif' font-size='9' fill='var(--muted)' text-anchor='middle'>Pricing</text><text x='248' y='142' font-family='&quot;Open Sans&quot;, Arial, sans-serif' font-size='9' fill='var(--muted)' text-anchor='middle'>Buy, build,</text><text x='248' y='154' font-family='&quot;Open Sans&quot;, Arial, sans-serif' font-size='9' fill='var(--muted)' text-anchor='middle'>or partner</text><rect x='320' y='20' width='300' height='220' rx='12' fill='var(--line)' fill-opacity='0.5' stroke='var(--line-strong)' stroke-width='2'/><text x='470' y='42' font-family='&quot;Open Sans&quot;, Arial, sans-serif' font-size='13' font-weight='700' letter-spacing='1' fill='var(--muted)' text-anchor='middle'>EXECUTION</text><text x='470' y='58' font-family='&quot;Open Sans&quot;, Arial, sans-serif' font-size='10' fill='var(--muted)' text-anchor='middle'>Where the work gets delivered</text><rect x='332' y='72' width='62' height='150' rx='8' fill='var(--paper)' fill-opacity='0.6' stroke='var(--line-strong)'/><text x='363' y='150' font-family='&quot;Open Sans&quot;, Arial, sans-serif' font-size='9' font-weight='700' fill='var(--muted)' text-anchor='middle'>PLANNING</text><rect x='404' y='72' width='62' height='150' rx='8' fill='var(--paper)' fill-opacity='0.6' stroke='var(--line-strong)'/><text x='435' y='150' font-family='&quot;Open Sans&quot;, Arial, sans-serif' font-size='9' font-weight='700' fill='var(--muted)' text-anchor='middle'>PROGRAMS</text><rect x='476' y='72' width='62' height='150' rx='8' fill='var(--paper)' fill-opacity='0.6' stroke='var(--line-strong)'/><text x='507' y='144' font-family='&quot;Open Sans&quot;, Arial, sans-serif' font-size='8.5' font-weight='700' fill='var(--muted)' text-anchor='middle'>ENABLE-</text><text x='507' y='156' font-family='&quot;Open Sans&quot;, Arial, sans-serif' font-size='8.5' font-weight='700' fill='var(--muted)' text-anchor='middle'>MENT</text><rect x='548' y='72' width='62' height='150' rx='8' fill='var(--paper)' fill-opacity='0.6' stroke='var(--line-strong)'/><text x='579' y='150' font-family='&quot;Open Sans&quot;, Arial, sans-serif' font-size='9' font-weight='700' fill='var(--muted)' text-anchor='middle'>SUPPORT</text></svg>",
+    "caption": "The Pragmatic Framework splits PM work into Strategy (Market, Focus, Business) and Execution (Planning, Programs, Enablement, Support). This program builds fluency for the Strategy half: understanding Voice of Customer in the Market column and business strategy in the Focus and Business columns, which together determine what problems are even worth solving before AI enters the picture."
+  },
+  "scenario": {
+    "company": "Equifax Workforce Solutions: Onboarding · I-9",
+    "context": "Meridian Logistics (a fictional 3,400-employee trucking and logistics company) is a customer of Equifax's Onboarding product category, which includes I-9, E-Verify, Onboarding Forms, and WOTC, and specifically uses the Forms HQ and I-9 HQ products. Today, Meridian's HR team manually creates onboarding packets and sends them to new hires one at a time.",
+    "brief": "Feature idea under review: an Onboarding Packet Agent, an agentic assistant exposed through a small set of MCP (Model Context Protocol) tools, that an HR rep can direct through Gemini, Claude, or any other AI chat of choice with a plain-language request like 'Send an onboarding packet to all new hires beginning work next month.' The agent looks up the matching new hires, shows the HR rep exactly who matched for confirmation, then sends each of them the standard packet to complete on or before their first day of employment."
+  },
+  "sections": [
+    {
+      "id": "problem_validation",
+      "heading": "Problem Validation",
+      "learning": "Before scoring a solution, validate that the problem is worth solving at all, with or without AI. The classic test: is it urgent (does it hurt enough, right now, that people will act), pervasive (does it affect enough people to matter), and is there a genuine willingness to buy (will someone pay, in money, time, or switching cost, to have it solved)? A problem missing even one of the three is a weak foundation, no matter how good the eventual solution is. This is what the Market column's Voice of Customer work is for: surfacing which problems clear this bar before anyone scores a solution.",
+      "example": {
+        "text": "Manually creating and sending six or seven separate onboarding documents to every new hire, one at a time, is urgent (a packet sent late or incomplete risks a missed Day-1 I-9 deadline), pervasive (every one of Meridian's roughly 40 weekly new hires needs the same packet, across a dozen sites), and backed by a clear willingness to buy: Meridian already pays Equifax for Forms HQ and I-9 HQ because manual handling doesn't scale, and packet delivery is the same shape of problem.",
+        "diagramSvg": "<svg viewBox='0 0 640 400' xmlns='http://www.w3.org/2000/svg' role='img' aria-label='Three overlapping circles for Urgent, Pervasive, and Willing to Buy, representing whether a problem is worth solving'><circle cx='230' cy='160' r='100' fill='var(--warn-soft)' fill-opacity='0.85' stroke='var(--warn)' stroke-width='2'/><circle cx='410' cy='160' r='100' fill='var(--accent-soft)' fill-opacity='0.85' stroke='var(--accent)' stroke-width='2'/><circle cx='320' cy='260' r='100' fill='var(--good-soft)' fill-opacity='0.85' stroke='var(--good)' stroke-width='2'/><text x='230' y='145' font-family='&quot;Open Sans&quot;, Arial, sans-serif' font-size='13' font-weight='700' fill='var(--ink)' text-anchor='middle'>URGENT</text><text x='230' y='163' font-family='&quot;Open Sans&quot;, Arial, sans-serif' font-size='11' fill='var(--muted)' text-anchor='middle'>Hurts now?</text><text x='410' y='145' font-family='&quot;Open Sans&quot;, Arial, sans-serif' font-size='13' font-weight='700' fill='var(--ink)' text-anchor='middle'>PERVASIVE</text><text x='410' y='163' font-family='&quot;Open Sans&quot;, Arial, sans-serif' font-size='11' fill='var(--muted)' text-anchor='middle'>Widespread?</text><text x='320' y='252' font-family='&quot;Open Sans&quot;, Arial, sans-serif' font-size='13' font-weight='700' fill='var(--ink)' text-anchor='middle'>WILLING TO BUY</text><text x='320' y='270' font-family='&quot;Open Sans&quot;, Arial, sans-serif' font-size='11' fill='var(--muted)' text-anchor='middle'>Will pay to fix it?</text><text x='320' y='200' font-family='&quot;Open Sans&quot;, Arial, sans-serif' font-size='14' font-weight='700' fill='var(--ink)' text-anchor='middle'>Worth solving</text></svg>"
+      },
+      "pitfall": "Skipping straight to 'AI could help with this' without checking urgency and pervasiveness first. A problem that's rare or low-stakes doesn't become worth solving just because AI makes a solution technically possible.",
+      "field": {
+        "label": "Your turn: Problem validation",
+        "help": "Is the manual packet-delivery problem urgent, pervasive, and something Meridian is willing to pay to solve?",
+        "type": "textarea",
+        "placeholder": "Assess urgency, pervasiveness, and willingness to buy. Not the solution yet, just the problem."
+      }
+    },
+    {
+      "id": "value",
+      "heading": "Desirable (valuable)",
+      "learning": "With the problem validated, turn to the solution. Is AI the right mechanism here, or would a simpler tool, a scheduled bulk-email merge say, solve this just as well? AI earns its place when the judgment involved is genuinely hard to encode as fixed rules; it's overkill when a simple form would do (compare a straightforward eligibility-matching tool like WOTC screening, a sibling product in the same Onboarding category, where rules alone often get you most of the way).",
+      "example": {
+        "text": "HR reps need to ask for different slices constantly: 'everyone starting next month,' 'just the Denver hires starting Monday,' 'anyone who hasn't completed their packet in 3 days.' Building a custom report or button for every phrasing doesn't scale; an agent that interprets the request and queries the right data does. It also has to get packet contents right per hire type, since a rehire doesn't need every form a first-time hire does, which is a judgment call, not a fixed mail-merge.",
+        "diagramSvg": "<svg viewBox='0 0 640 420' xmlns='http://www.w3.org/2000/svg' role='img' aria-label='Three overlapping circles for Desirable, Usability, and Feasibility, inside a dashed boundary labeled Viable'><rect x='20' y='15' width='600' height='390' rx='16' fill='none' stroke='var(--line-strong)' stroke-dasharray='6 5'/><text x='320' y='38' font-family='&quot;Open Sans&quot;, Arial, sans-serif' font-size='11' font-weight='700' letter-spacing='1' fill='var(--muted)' text-anchor='middle'>VIABLE: THE BUSINESS CASE HAS TO CLOSE</text><circle cx='230' cy='190' r='100' fill='var(--accent-soft)' fill-opacity='0.8' stroke='var(--accent)' stroke-width='2'/><circle cx='410' cy='190' r='100' fill='var(--good-soft)' fill-opacity='0.8' stroke='var(--good)' stroke-width='2'/><circle cx='320' cy='290' r='100' fill='var(--warn-soft)' fill-opacity='0.8' stroke='var(--warn)' stroke-width='2'/><text x='230' y='175' font-family='&quot;Open Sans&quot;, Arial, sans-serif' font-size='13' font-weight='700' fill='var(--ink)' text-anchor='middle'>DESIRABLE</text><text x='230' y='193' font-family='&quot;Open Sans&quot;, Arial, sans-serif' font-size='11' fill='var(--muted)' text-anchor='middle'>Right mechanism?</text><text x='410' y='175' font-family='&quot;Open Sans&quot;, Arial, sans-serif' font-size='13' font-weight='700' fill='var(--ink)' text-anchor='middle'>USABILITY</text><text x='410' y='193' font-family='&quot;Open Sans&quot;, Arial, sans-serif' font-size='11' fill='var(--muted)' text-anchor='middle'>Trusted when wrong?</text><text x='320' y='282' font-family='&quot;Open Sans&quot;, Arial, sans-serif' font-size='13' font-weight='700' fill='var(--ink)' text-anchor='middle'>FEASIBILITY</text><text x='320' y='300' font-family='&quot;Open Sans&quot;, Arial, sans-serif' font-size='11' fill='var(--muted)' text-anchor='middle'>Model + data ready?</text><text x='320' y='226' font-family='&quot;Open Sans&quot;, Arial, sans-serif' font-size='14' font-weight='700' fill='var(--ink)' text-anchor='middle'>Ship it</text></svg>"
+      },
+      "pitfall": "Treating 'AI can do this' as the same claim as 'AI should do this.' If a fixed rule, such as whether the start date falls within a date range or whether a required field is blank, would catch the case just as reliably, building an AI feature for it only adds cost and a new failure mode without adding judgment.",
+      "field": {
+        "label": "Your turn: Desirable (valuable)",
+        "help": "Is AI the right mechanism for the Onboarding Packet Agent, or would something simpler work as well?",
+        "type": "textarea",
+        "placeholder": "State the judgment call AI is making here that a simpler tool couldn't."
+      }
+    },
+    {
+      "id": "viability",
+      "heading": "Viability",
+      "learning": "Classic viability asks whether the business case closes. AI viability adds a cost that scales with usage: every model call and every tool call has a marginal cost. A feature that's cheap to build can still be expensive to run at scale, and you now have a build-vs-buy-vs-prompt decision: fine-tune a model, call a vendor API, or just write a very good prompt against an existing model.",
+      "example": {
+        "text": "At Meridian's volume (roughly 40 new hires a week, with one request handling all of them at once), the cost is a handful of tool calls per request, not per hire: cheap next to the HR hours saved on individually creating and sending a packet to each person. A well-prompted existing model with a small, well-scoped tool set should be sufficient to start."
+      },
+      "pitfall": "Estimating cost off a demo instead of real volume. A feature that costs pennies per request in testing can add up fast once every HR rep across a dozen sites is issuing requests daily. Model the cost at 6 to 12 months of real volume, not day one.",
+      "field": {
+        "label": "Your turn: Viability",
+        "help": "What does this cost to run at Meridian's volume, and is prompting an existing model enough, or does this need something heavier?",
+        "type": "textarea",
+        "placeholder": "Estimate the scale, and name the build-vs-buy-vs-prompt call."
+      }
+    },
+    {
+      "id": "feasibility",
+      "heading": "Feasibility",
+      "learning": "Feasibility used to mostly mean engineering capacity. Now it also means: do we have the data this needs, and is it clean enough to use? Can the model reliably do this task at all? Eval-driven development means defining your success criteria and test cases before you build, not writing a rubric after something ships and looks wrong.",
+      "example": {
+        "text": "The agent needs reliable access to new-hire records (start date, site, employment type) through a lookup tool, and a current, correct version of all seven onboarding documents. Before trusting this in production, we'd run the agent against 50 historical 'send a packet to X' requests with known correct recipient lists, and check it matches the same people an HR rep would have picked by hand: no one missing, no one extra."
+      },
+      "pitfall": "Treating 'it worked on the examples I tried' as proof. A handful of clean requests will pass almost any model. The real test is the messy cases: an ambiguous date range, a rehire, a hire missing a site field. If your test set skips those, you haven't tested the part that actually breaks.",
+      "field": {
+        "label": "Your turn: Feasibility",
+        "help": "Is the data ready, and how would you prove this works before shipping it?",
+        "type": "textarea",
+        "placeholder": "Name the test set you'd build and what 'passing' would look like."
+      }
+    },
+    {
+      "id": "usability",
+      "heading": "Usability",
+      "learning": "Every AI feature will sometimes be wrong. Usability now includes: does the user know when to trust the output? Is there a graceful way to correct it? An AI feature with no visible path for 'this might be wrong, here's how to fix it' is a usability gap, not just an accuracy gap.",
+      "example": {
+        "text": "The agent always shows the HR rep exactly who it matched (name, site, start date) before sending anything, so a wrong interpretation of 'next month' is caught before seven documents go to the wrong person. Anything ambiguous, like a hire missing a start date or an unclear date range, routes to a clarifying question instead of a best guess."
+      },
+      "pitfall": "Designing the happy path and forgetting the correction path. An agent that sends immediately on a vague request, with no confirmation step, turns one misread date range into dozens of misdirected onboarding packets, with no easy way to know it happened.",
+      "field": {
+        "label": "Your turn: Usability",
+        "help": "How does an HR rep know when to trust the matched list versus double-check it? What's the correction path?",
+        "type": "textarea",
+        "placeholder": "Describe how trust is shown, and what triggers a human-only path."
+      }
+    }
+  ],
+  "artifactFilename": "week-1-onboarding-packet-agent-scorecard.md",
+  "artifactTemplate": "# AI Feature Scorecard: Onboarding Packet Agent (Meridian Logistics)\n\n**Scored by:** {{__name__}}\n**Date:** {{__date__}}\n\n## Problem Validation\nIs the problem urgent, pervasive, and worth paying to solve?\n\n{{problem_validation}}\n\n## Desirable (valuable)\nIs AI the right mechanism?\n\n{{value}}\n\n## Viability\nWhat does this cost to run, and what's the right build approach?\n\n{{viability}}\n\n## Feasibility\nIs the data ready, and how would you prove this works before shipping?\n\n{{feasibility}}\n\n## Usability\nHow does a human know when to trust it, and what's the correction path?\n\n{{usability}}\n\n---\n_Template from the AI PM Training Program, Week 1: Foundations. Reuse this scorecard structure on a real feature idea._\n"
+}

@@ -1,0 +1,60 @@
+{
+  "program": {
+    "title": "AI PM Training Program",
+    "subtitle": "From experienced PM to AI PM: one 30-minute module a week.",
+    "productName": "Employer Services",
+    "scenarioCompany": "Equifax Workforce Solutions: Onboarding · I-9",
+    "scenarioNote": "Every exercise runs on a real Equifax Workforce Solutions product category, Onboarding, which includes I-9, E-Verify, Onboarding Forms, and WOTC, building specifically within the Forms HQ and I-9 HQ products, for a fully fictional customer, Meridian Logistics, with fictional data throughout. Nothing you enter here should ever be a real customer, real employee, or real roadmap detail. See the Data Boundary note on the home page."
+  },
+  "weeks": [
+    {
+      "id": "week-1",
+      "order": 1,
+      "title": "Foundations",
+      "tagline": "Refresh core PM principles: problem validation, then desirability, viability, feasibility, and usability, reframed for AI.",
+      "timeEstimate": "~25 min"
+    },
+    {
+      "id": "week-2",
+      "order": 2,
+      "title": "Prompting & Spec-Writing",
+      "tagline": "Turn a vague ask into a structured prompt an AI tool can actually execute against.",
+      "timeEstimate": "~25 min"
+    },
+    {
+      "id": "week-3",
+      "order": 3,
+      "title": "Context Engineering & Guardrails",
+      "tagline": "Write the constraint file that keeps an AI agent inside scope during real build work.",
+      "timeEstimate": "~30 min"
+    },
+    {
+      "id": "week-4",
+      "order": 4,
+      "title": "Prototyping with AI",
+      "tagline": "Go from spec to a clickable prototype outline without waiting on an engineer.",
+      "timeEstimate": "~30 min"
+    },
+    {
+      "id": "week-5",
+      "order": 5,
+      "title": "Evaluating Output & the AI SDLC",
+      "tagline": "Review AI-produced work against a rubric, and see where a PM plugs into each stage.",
+      "timeEstimate": "~25 min"
+    },
+    {
+      "id": "week-6",
+      "order": 6,
+      "title": "Launch, Adoption & Monitoring",
+      "tagline": "Close out the AI PDLC: launch readiness, getting people to actually use it, and watching it after launch.",
+      "timeEstimate": "~25 min"
+    },
+    {
+      "id": "capstone",
+      "order": 7,
+      "title": "Capstone",
+      "tagline": "Assemble everything you built into one shareable AI PM portfolio piece.",
+      "timeEstimate": "~20 min"
+    }
+  ]
+}

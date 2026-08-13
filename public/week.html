@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>AI PM Training Program</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27%3E%3Crect width=%27100%27 height=%27100%27 rx=%2718%27 fill=%27%239E1B32%27/%3E%3Ctext x=%2750%27 y=%2768%27 font-size=%2758%27 text-anchor=%27middle%27 fill=%27%23FFFFFF%27 font-family=%27Arial,sans-serif%27 font-weight=%27700%27%3EA%3C/text%3E%3C/svg%3E" />
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <div class="wrap">
+    <div class="brand-lockup">
+      <img src="/assets/equifax-logo.png" alt="Equifax" />
+      <div class="divider"></div>
+      <span class="product-name">Employer Services: AI PM Training</span>
+    </div>
+
+    <header class="top">
+      <a class="back" href="/">&larr; All modules</a>
+      <div class="eyebrow" id="week-eyebrow"></div>
+      <h1 id="week-title">Loading…</h1>
+      <p class="dek" id="week-tagline"></p>
+    </header>
+
+    <section class="intro-block">
+      <p class="lede" id="week-intro"></p>
+    </section>
+
+    <section class="concept-diagram" id="concept-diagram-section" style="display:none;">
+      <div class="card diagram-card">
+        <div id="concept-diagram-svg"></div>
+        <p class="caption" id="concept-diagram-caption"></p>
+      </div>
+    </section>
+
+    <section class="scenario">
+      <h2>Scenario</h2>
+      <div class="card scenario-card">
+        <div class="company" id="scenario-company"></div>
+        <p id="scenario-context"></p>
+        <p class="brief" id="scenario-brief"></p>
+      </div>
+    </section>
+
+    <section class="sections">
+      <h2>Work through it</h2>
+      <p class="lede">For each part below: read the guidance, review the worked example, then answer for the Onboarding Packet Agent yourself.</p>
+      <form id="exercise-form"></form>
+      <div class="actions">
+        <button type="button" class="primary" id="save-btn">Save progress</button>
+        <button type="button" class="secondary" id="complete-btn">Mark week complete</button>
+        <button type="button" class="secondary" id="download-btn">Download artifact (.md)</button>
+        <span class="save-status" id="save-status"></span>
+      </div>
+    </section>
+
+    <div class="week-nav">
+      <a id="prev-link" href="#"></a>
+      <a id="next-link" href="#"></a>
+    </div>
+  </div>
+
+  <script src="/shared.js"></script>
+  <script src="/week.js"></script>
+</body>
+</html>
