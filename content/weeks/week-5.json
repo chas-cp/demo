@@ -11,8 +11,8 @@
   },
   "scenario": {
     "company": "Equifax Workforce Solutions — Onboarding · I-9",
-    "context": "The Level 3 agent has produced its first batch of I-9 Completion Assistant results, built against the guardrail file from Week 3. Below is one result, exactly as the agent produced it. (The same rubric discipline applies to any Employer Services agent output — an ID Watchdog fraud-signal review or an Unemployment Cost Management claims assistant would need the same specific, checklist-driven review, not a general read-through for anything that feels off.)",
-    "brief": "AGENT OUTPUT — Review result for submission #A-2291 (new hire: D. Okonkwo):\n\nFlag summary: \"No issues found. All Section 1 and Section 2 fields match supporting documents. Ready to close.\"\n\nInternal note: \"Reviewed per standard I-9 field-matching rules. No discrepancies.\"\n\n(Recall from Week 3's guardrail file: any new hire previously flagged in a compliance audit must be routed for manual review, regardless of what the field comparison finds. D. Okonkwo was flagged in Meridian's Q1 compliance audit for a prior I-9 timing issue.)"
+    "context": "The Onboarding Packet Agent has been running for a week against the guardrail file from Week 3. Below is a log entry from one request, exactly as the agent produced it. (The same rubric discipline applies to any Employer Services agent output — an ID Watchdog fraud-signal review or an Unemployment Cost Management claims assistant would need the same specific, checklist-driven review, not a general read-through for anything that feels off.)",
+    "brief": "AGENT OUTPUT — Log for request \"Send onboarding packet to all new hires beginning work next month\":\n\nInterpreted: Start date Nov 1–30, 2026. Matched 6 employees. Confirmed by HR rep. Packets sent to all 6.\n\nSummary report generated for HR rep review:\n[Employee | Start Date | Self-ID Disability Response | Self-ID Veteran Response | I-9 Status | Pay Election Status]\n\n(Recall from Week 3's guardrail file: Self-Identification of Disability and Self-Identification as a Protected Veteran responses are voluntary and confidential, must be kept in a separate file, and must never be visible to anyone involved in employment decisions — including the HR rep who requested the batch.)"
   },
   "sections": [
     {
@@ -20,12 +20,12 @@
       "heading": "What did the agent get wrong?",
       "learning": "Reviewing AI output is a distinct skill from reviewing a human's work. A human who cuts a corner usually knows they cut it. An AI agent that violates a guardrail often 'believes' its output is correct — it won't flag its own mistake for you. That means checking each constraint explicitly, not reading through for a general feeling that something's off.",
       "example": {
-        "text": "D. Okonkwo was previously flagged in a compliance audit, which — per the Week 3 guardrail file — should have triggered manual review regardless of how clean the field comparison looked. The agent closed the case as 'no issues found' with no escalation flag at all. This is a guardrail violation, not a field-matching error."
+        "text": "The confirmation and send steps followed the rules exactly — the problem is the summary report. It includes each employee's actual Self-ID Disability and Self-ID Veteran responses in a view the requesting HR rep can see. Per the Week 3 guardrail file, that's a real confidentiality violation, even though every tool call up to that point was correct. Getting the send logic right doesn't matter if the reporting step leaks the one thing that was never supposed to be shown."
       },
-      "pitfall": "Concluding 'the agent seems fine' because the field-matching logic is technically correct. A guardrail violation isn't a bug in the reasoning — it's a case the reasoning was never supposed to touch. Check the escalation trigger list itself, not just whether the output looks plausible.",
+      "pitfall": "Concluding 'the agent seems fine' because the matching and sending logic is technically correct. A guardrail violation isn't a bug in the reasoning — it's a case the reasoning was never supposed to touch. Check every constraint explicitly, including the ones that don't involve sending anything.",
       "field": {
         "label": "Your turn: What went wrong",
-        "help": "Check the result above against the guardrail file's escalation rules. Be specific about which rule was violated.",
+        "help": "Check the result above against the guardrail file's forbidden actions. Be specific about which rule was violated.",
         "type": "textarea",
         "placeholder": "Name the specific rule violated, not just 'this seems wrong.'"
       }
@@ -33,11 +33,11 @@
     {
       "id": "rubric_scope",
       "heading": "Rubric — scope adherence",
-      "learning": "A rubric turns a vague worry into a checklist. Instead of 'does this look right,' ask: did it stay within the allowed actions specifically.",
+      "learning": "A rubric turns a vague worry into a checklist. Instead of 'does this look right,' ask: did it call only its named tools, and nothing beyond what they return.",
       "example": {
-        "text": "Spot-check that no submission was auto-closed without checking prior-audit-flag status, and that no employee was contacted directly by the agent."
+        "text": "Spot-check that every send_packet call was preceded by a shown, confirmed match, and that lookup_new_hires was never used to pull or surface a field it isn't scoped to return."
       },
-      "pitfall": "Testing scope adherence with only 'normal' cases. Scope violations hide in edge cases — the previously-audited hire, the receipt-tracked document — precisely because those are the cases someone forgot to include in the test set.",
+      "pitfall": "Testing scope adherence with only 'did it send correctly' and missing 'did it expose data it wasn't supposed to.' Scope isn't just about which tools got called — it's also about what shows up in what a human sees afterward.",
       "field": {
         "label": "Your turn: Scope adherence",
         "help": "How would you check, on every batch, that the agent stayed within allowed actions?",
@@ -47,15 +47,15 @@
     },
     {
       "id": "rubric_citation",
-      "heading": "Rubric — requirement citation accuracy",
-      "learning": "How would you check that nothing was fabricated?",
+      "heading": "Rubric — confidentiality check",
+      "learning": "How would you check that nothing confidential leaked into agent-produced output?",
       "example": {
-        "text": "Every flag must cite a specific federal requirement. Spot-check a sample against the actual requirements document to confirm the cited rule says what the flag claims."
+        "text": "Every summary report or status view the HR rep can see must be checked field-by-field against the forbidden-actions list. If Self-ID Disability or Self-ID Veteran data appears anywhere in it, that's an automatic fail, regardless of how the rest of the batch performed."
       },
-      "pitfall": "Accepting a citation because it sounds official (a specific-looking regulation reference) without checking it says what the flag claims. A confident, specific-sounding citation is not the same as a correct one — spot-check against the actual source, every batch.",
+      "pitfall": "Only checking whether the agent's stated reasoning mentions confidential data, and not checking its actual output. An agent can correctly 'know' a field is confidential and still include it in a report — the rule has to be verified against what was shown, not what was said.",
       "field": {
-        "label": "Your turn: Citation accuracy",
-        "help": "How would you verify nothing was fabricated?",
+        "label": "Your turn: Confidentiality check",
+        "help": "How would you verify no confidential data leaked into HR-rep-facing output?",
         "type": "textarea",
         "placeholder": "Describe the spot-check."
       }
@@ -65,9 +65,9 @@
       "heading": "Rubric — escalation correctness",
       "learning": "How would you verify every case that should have escalated, did?",
       "example": {
-        "text": "Run every prior-audit-flagged new hire from the historical set through the assistant and confirm 100% were routed for manual review, regardless of what the field comparison found. Then do the same for the time-based triggers from Week 3 — cases with a receipt nearing its 90-day deadline, and cases with a reverification date coming due — since those fail silently if no one is watching the calendar. Zero false negatives allowed on any of these."
+        "text": "Run every ambiguous-date-range and non-standard-employment-type case from the historical set through the agent and confirm 100% escalated to a human instead of guessing — zero false negatives allowed on this rule, since a wrong guess here means real people get the wrong packet."
       },
-      "pitfall": "Testing escalation correctness only against clean, current cases and skipping the time-based ones. A rule that correctly escalates a prior-audit flag but silently lets a 90-day receipt window or a reverification date slide by is still failing — just more quietly, and closer to an actual compliance deadline.",
+      "pitfall": "Testing escalation correctness only against clean, unambiguous requests and skipping the edge cases. A rule that correctly escalates an obviously-missing field but silently guesses on a borderline date range is still failing — just on the cases most likely to actually occur.",
       "field": {
         "label": "Your turn: Escalation correctness",
         "help": "How would you verify every case that should have escalated, did?",
@@ -78,11 +78,11 @@
     {
       "id": "rubric_format",
       "heading": "Rubric — output format",
-      "learning": "How would you confirm the output structure matches what was specified (flag summary plus internal note)?",
+      "learning": "How would you confirm the output structure matches what was specified (interpreted criteria, matched list, then per-employee send status)?",
       "example": {
-        "text": "Every result must include both a flag summary and a separate internal note — reject any output missing either section, or any flag missing a cited requirement."
+        "text": "Every request must produce an interpreted-criteria summary, a matched-employee list shown before send, and a per-employee status after send — reject any output missing one of the three, or any summary report that includes fields beyond name, site, start date, and status."
       },
-      "pitfall": "Treating format checks as a nice-to-have because 'the content is what matters.' A missing internal note means no one can reconstruct later why a case was or wasn't flagged — for a compliance record, the format is part of the content.",
+      "pitfall": "Treating format checks as a nice-to-have because 'the send logic is what matters.' The confidentiality violation in this week's example is, structurally, a format problem — the report included fields it should never have contained. Format and compliance aren't separate checks here.",
       "field": {
         "label": "Your turn: Output format",
         "help": "How would you confirm the output structure matches what was specified?",
@@ -91,6 +91,6 @@
       }
     }
   ],
-  "artifactFilename": "week-5-i9-completion-assistant-review-rubric.md",
-  "artifactTemplate": "# Review Rubric — I-9 Completion Assistant\n\n**Built by:** {{__name__}}\n**Date:** {{__date__}}\n\n## Issue found in sample result #A-2291\n{{flags_found}}\n\n## Rubric — Scope adherence\n{{rubric_scope}}\n\n## Rubric — Requirement citation accuracy\n{{rubric_citation}}\n\n## Rubric — Escalation correctness\n{{rubric_escalation}}\n\n## Rubric — Output format\n{{rubric_format}}\n\n---\n_Template from the AI PM Training Program, Week 5: Evaluating Output & the AI SDLC. Run this rubric against every new batch of agent output before it ships._\n"
+  "artifactFilename": "week-5-onboarding-packet-agent-review-rubric.md",
+  "artifactTemplate": "# Review Rubric — Onboarding Packet Agent\n\n**Built by:** {{__name__}}\n**Date:** {{__date__}}\n\n## Issue found in sample log\n{{flags_found}}\n\n## Rubric — Scope adherence\n{{rubric_scope}}\n\n## Rubric — Confidentiality check\n{{rubric_citation}}\n\n## Rubric — Escalation correctness\n{{rubric_escalation}}\n\n## Rubric — Output format\n{{rubric_format}}\n\n---\n_Template from the AI PM Training Program, Week 5: Evaluating Output & the AI SDLC. Run this rubric against every new batch of agent output before it ships._\n"
 }

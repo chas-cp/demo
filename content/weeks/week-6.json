@@ -1,0 +1,81 @@
+{
+  "id": "week-6",
+  "order": 6,
+  "title": "Launch, Adoption & Monitoring",
+  "tagline": "Close out the AI PDLC: launch readiness, getting people to actually use it, and watching it after launch.",
+  "timeEstimate": "~25 min",
+  "intro": "Weeks 1 through 5 took the Onboarding Packet Agent from idea to a guardrail file that passed review. That's the build-and-evaluate half of the AI product development lifecycle — but a feature that's correct in testing still has to actually launch, get adopted, and stay healthy once real people depend on it. This week closes that gap: a launch readiness gate, an adoption plan, and a monitoring plan that feeds learnings back into the next Framing conversation.",
+  "diagram": {
+    "svg": "<svg viewBox='0 0 560 300' xmlns='http://www.w3.org/2000/svg' role='img' aria-label='Launch readiness gate checklist: piloted with one site, admins trained, escalation path staffed, rollback switch in place, monitoring dashboard live'><rect x='20' y='20' width='520' height='260' rx='12' fill='var(--paper)' stroke='var(--line-strong)' stroke-width='2'/><text x='280' y='48' font-family='Arial, sans-serif' font-size='13' font-weight='700' letter-spacing='1' fill='var(--ink)' text-anchor='middle'>LAUNCH READINESS GATE</text><line x1='40' y1='62' x2='520' y2='62' stroke='var(--line)'/><circle cx='56' cy='92' r='12' fill='var(--good-soft)' stroke='var(--good)' stroke-width='2'/><text x='56' y='97' font-family='Arial, sans-serif' font-size='14' font-weight='700' fill='var(--good)' text-anchor='middle'>&#10003;</text><text x='80' y='97' font-family='Arial, sans-serif' font-size='12' fill='var(--ink)'>Piloted with one site before full rollout</text><circle cx='56' cy='132' r='12' fill='var(--good-soft)' stroke='var(--good)' stroke-width='2'/><text x='56' y='137' font-family='Arial, sans-serif' font-size='14' font-weight='700' fill='var(--good)' text-anchor='middle'>&#10003;</text><text x='80' y='137' font-family='Arial, sans-serif' font-size='12' fill='var(--ink)'>HR reps trained on how to phrase requests</text><circle cx='56' cy='172' r='12' fill='var(--good-soft)' stroke='var(--good)' stroke-width='2'/><text x='56' y='177' font-family='Arial, sans-serif' font-size='14' font-weight='700' fill='var(--good)' text-anchor='middle'>&#10003;</text><text x='80' y='177' font-family='Arial, sans-serif' font-size='12' fill='var(--ink)'>Escalation path staffed for ambiguous matches</text><circle cx='56' cy='212' r='12' fill='var(--good-soft)' stroke='var(--good)' stroke-width='2'/><text x='56' y='217' font-family='Arial, sans-serif' font-size='14' font-weight='700' fill='var(--good)' text-anchor='middle'>&#10003;</text><text x='80' y='217' font-family='Arial, sans-serif' font-size='12' fill='var(--ink)'>Rollback / pause switch in place</text><circle cx='56' cy='252' r='12' fill='var(--good-soft)' stroke='var(--good)' stroke-width='2'/><text x='56' y='257' font-family='Arial, sans-serif' font-size='14' font-weight='700' fill='var(--good)' text-anchor='middle'>&#10003;</text><text x='80' y='257' font-family='Arial, sans-serif' font-size='12' fill='var(--ink)'>Monitoring dashboard live before launch day</text></svg>",
+    "caption": "Five concrete, checkable criteria — not a feeling — that have to be true before the Onboarding Packet Agent rolls out beyond a single pilot site."
+  },
+  "scenario": {
+    "company": "Equifax Workforce Solutions — Onboarding · I-9",
+    "context": "The Onboarding Packet Agent passed Week 5's review rubric after the confidentiality issue was caught and fixed. Now Meridian wants to roll it out to HR reps across all twelve sites — which is a different kind of readiness than 'the guardrails held up in testing.'",
+    "brief": "Define what has to be true before broader rollout, how HR reps actually start trusting and using it instead of the old six-emails-by-hand process, what gets watched once it's live, and how a learning from that monitoring becomes the next problem worth framing."
+  },
+  "sections": [
+    {
+      "id": "launch_readiness",
+      "heading": "Launch Readiness",
+      "learning": "Passing the review rubric proves the agent behaves correctly against the test cases you thought to write. It doesn't prove it's safe to hand to every HR rep on day one. A launch readiness gate is a short, concrete checklist that has to be true before a broader rollout — not a vague 'feels ready.'",
+      "example": {
+        "text": "Rollout starts with the Denver site only, for one week, with those HR reps specifically told they're piloting something new. The escalation path from Week 3 has a real person staffed to handle it, not just a defined process on paper. There's a single switch that pauses the agent entirely if something goes wrong, and someone who actually knows how to flip it."
+      },
+      "pitfall": "Treating 'it passed the review rubric' as the same as 'it's ready to launch.' A rubric proves correctness on the test cases you thought to write; a pilot proves it survives contact with real people asking things you didn't think to test.",
+      "field": {
+        "label": "Your turn: Launch readiness",
+        "help": "What has to be true before the Onboarding Packet Agent rolls out beyond a single pilot site?",
+        "type": "textarea",
+        "placeholder": "List concrete, checkable readiness criteria — not a feeling."
+      }
+    },
+    {
+      "id": "adoption",
+      "heading": "Adoption & Change Management",
+      "learning": "A working tool doesn't get used just because it works. HR reps have to trust it, know how to phrase a request, and believe it isn't replacing their judgment before they'll actually rely on it instead of the old way. Adoption is its own workstream, not something that happens automatically once the build is done.",
+      "example": {
+        "text": "A one-page quick-reference card shows three example requests HR reps can copy and adapt, plus a plain statement of what the agent will always ask a human about (anything ambiguous, any rehire or contractor) so reps don't worry it's making judgment calls behind their back. The Denver site's HR lead demos it live in a team meeting before it's turned on for anyone."
+      },
+      "pitfall": "Assuming a working demo is the same as an adoption plan. Showing the agent works once, to the team that built it, tells you nothing about whether a skeptical HR rep at a different site will actually use it instead of falling back to the familiar process.",
+      "field": {
+        "label": "Your turn: Adoption plan",
+        "help": "How do you get HR reps to actually trust and use this instead of the old process?",
+        "type": "textarea",
+        "placeholder": "Name specific training/comms/trust-building steps, not just 'communicate the change.'"
+      }
+    },
+    {
+      "id": "monitoring",
+      "heading": "Monitoring",
+      "learning": "What do you watch after launch, and what would make you pause it? The metrics worth watching aren't just 'did it work' — they're the specific failure modes Week 3's guardrails and Week 5's rubric were written to catch, now measured continuously instead of checked once.",
+      "example": {
+        "text": "Send success rate (target: above 99%). Escalation rate (expected to be nonzero — a 0% escalation rate is itself suspicious, since it would mean no ambiguous case ever came up). A confidentiality-incident count with exactly one acceptable value: zero, checked automatically on every summary report generated, not spot-checked after the fact."
+      },
+      "pitfall": "Only measuring 'did it send' and not the trust/correction signals — override rate, escalation rate, time-to-notice on a failure. A 100% send-success rate tells you nothing about whether the packets that got sent were actually correct.",
+      "field": {
+        "label": "Your turn: Monitoring plan",
+        "help": "What would you watch in the first 30 days, and what threshold would make you pause the agent?",
+        "type": "textarea",
+        "placeholder": "Name specific metrics and the number that would trigger a pause."
+      }
+    },
+    {
+      "id": "closing_loop",
+      "heading": "Closing the Loop",
+      "learning": "Week 5's SDLC diagram showed Monitoring feeding back into Framing — this is that connection made concrete. A learning from watching the Onboarding Packet Agent in production becomes the next Week-1-style problem to validate, not a one-off incident report that gets filed and forgotten.",
+      "example": {
+        "text": "If monitoring shows HR reps repeatedly asking for 'send an offboarding packet' — a request the agent structurally can't fulfill, since it only has onboarding tools — that's not a support ticket. It's a validated, pervasive, urgent-enough-to-ask-repeatedly signal for the next feature: an Offboarding Packet Agent, scoped and guardrailed the same way this one was."
+      },
+      "pitfall": "Treating launch as the finish line. The AI SDLC loop only closes if monitoring signals actually make it back to a framing conversation — otherwise the same discovery work happens again from scratch next time.",
+      "field": {
+        "label": "Your turn: Closing the loop",
+        "help": "Name one thing you'd watch in the first 30 days, and what real next-feature opportunity a specific finding might validate.",
+        "type": "textarea",
+        "placeholder": "Connect a monitoring signal to a concrete next problem worth framing."
+      }
+    }
+  ],
+  "artifactFilename": "week-6-onboarding-packet-agent-launch-plan.md",
+  "artifactTemplate": "# Launch & Monitoring Plan — Onboarding Packet Agent\n\n**Built by:** {{__name__}}\n**Date:** {{__date__}}\n\n## Launch readiness\n{{launch_readiness}}\n\n## Adoption & change management\n{{adoption}}\n\n## Monitoring\n{{monitoring}}\n\n## Closing the loop\n{{closing_loop}}\n\n---\n_Template from the AI PM Training Program, Week 6: Launch, Adoption & Monitoring. Reuse this structure as a launch checklist on real work._\n"
+}

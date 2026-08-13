@@ -4,57 +4,57 @@
   "title": "Prototyping with AI",
   "tagline": "Go from spec to a clickable prototype outline without waiting on an engineer.",
   "timeEstimate": "~30 min",
-  "intro": "You don't need to know how to code to get a prototype in front of people this week. What you need is the same PM skill from Week 2 — a structured prompt — pointed at describing screens and states instead of describing a compliance rule.",
+  "intro": "You don't need to know how to code to get a prototype in front of people this week. What you need is the same PM skill from Week 2 — a structured prompt — pointed at describing screens and states instead of describing a tool call.",
   "scenario": {
     "company": "Equifax Workforce Solutions — Onboarding · I-9",
-    "context": "The I-9 Completion Assistant guardrail file from Week 3 is written. Now design and engineering need to see roughly what the HR-admin-facing tool looks like before committing real build time. (The same outline-first approach applies to any Employer Services admin tool — an Unemployment Cost Management claims-review dashboard would start from the same three questions: what does the admin see, what can they change, and what's the one moment worth testing first.)",
-    "brief": "Outline a 3-screen flow for the HR admin's view of the I-9 Completion Assistant: (1) the incoming new-hire submission with the AI's flagged issues, (2) the review/edit screen where the admin resolves or overrides a flag, (3) the escalation state when a submission is routed for manual review."
+    "context": "The Onboarding Packet Agent's guardrail file from Week 3 is written. Now design and engineering need to see roughly what the HR rep's side of the conversation looks like before committing real build time. (The same outline-first approach applies to any Employer Services admin tool — an Unemployment Cost Management claims-review dashboard would start from the same three questions: what does the admin see, what can they change, and what's the one moment worth testing first.)",
+    "brief": "Outline a 3-screen flow for the HR rep's view of the Onboarding Packet Agent: (1) the request and the agent's interpreted match, shown for confirmation before anything sends, (2) the packet contents for that batch, with any hire-type exceptions flagged, (3) the send-status screen once the HR rep confirms."
   },
   "sections": [
     {
       "id": "screen_1",
-      "heading": "Screen 1 — Incoming submission",
-      "learning": "Describe states, not just layout. 'A form with a submit button' is a layout. 'A list of flagged issues that's empty until review is complete, with each flag showing its cited requirement' is a prototype outline an AI tool can actually build something useful from.",
+      "heading": "Screen 1 — Request & match preview",
+      "learning": "Describe states, not just layout. 'A text box and a button' is a layout. 'A matched-employee list that's empty until the agent finishes interpreting the request, with each row showing exactly why it matched' is a prototype outline an AI tool can actually build something useful from.",
       "example": {
-        "text": "New hire's submitted I-9 fields and document images on the left. AI's flagged issues on the right, each showing the specific field, the federal requirement it fails to meet, and a suggested next step. A summary badge at the top shows flag count, or 'No issues found' in the clear case.",
-        "diagramSvg": "<svg viewBox='0 0 600 260' xmlns='http://www.w3.org/2000/svg' role='img' aria-label='Wireframe of the incoming submission screen: document panel on the left, flagged issues panel on the right'><rect x='1' y='1' width='598' height='258' rx='6' fill='var(--paper)' stroke='var(--line-strong)'/><rect x='1' y='1' width='598' height='34' rx='6' fill='var(--line)'/><text x='16' y='23' font-family='Arial, sans-serif' font-size='12' font-weight='700' fill='var(--ink)'>I-9 Completion Assistant — Review: J. Alvarez</text><rect x='470' y='9' width='112' height='18' rx='9' fill='var(--warn-soft)'/><text x='526' y='22' font-family='Arial, sans-serif' font-size='10' font-weight='700' fill='var(--warn)' text-anchor='middle'>2 FLAGS FOUND</text><text x='16' y='56' font-family='Arial, sans-serif' font-size='10' font-weight='700' letter-spacing='0.5' fill='var(--muted)'>NEW HIRE SUBMISSION</text><rect x='16' y='64' width='268' height='10' rx='2' fill='var(--line)'/><rect x='16' y='82' width='240' height='10' rx='2' fill='var(--line)'/><rect x='16' y='100' width='268' height='10' rx='2' fill='var(--line)'/><rect x='16' y='118' width='180' height='10' rx='2' fill='var(--line)'/><rect x='16' y='140' width='268' height='90' rx='4' fill='var(--line)' opacity='0.5'/><text x='150' y='188' font-family='Arial, sans-serif' font-size='10' fill='var(--muted)' text-anchor='middle'>document image</text><text x='316' y='56' font-family='Arial, sans-serif' font-size='10' font-weight='700' letter-spacing='0.5' fill='var(--accent)'>AI-FLAGGED ISSUES</text><rect x='316' y='64' width='268' height='46' rx='4' fill='var(--accent-soft)' stroke='var(--accent)'/><text x='328' y='80' font-family='Arial, sans-serif' font-size='10' font-weight='700' fill='var(--ink)'>Section 2 · Document expired</text><text x='328' y='95' font-family='Arial, sans-serif' font-size='9' fill='var(--muted)'>Cites 8 CFR 274a.2 — resubmit needed</text><rect x='316' y='116' width='268' height='46' rx='4' fill='var(--accent-soft)' stroke='var(--accent)'/><text x='328' y='132' font-family='Arial, sans-serif' font-size='10' font-weight='700' fill='var(--ink)'>Section 1 · Name mismatch</text><text x='328' y='147' font-family='Arial, sans-serif' font-size='9' fill='var(--muted)'>Confirm with employee</text></svg>"
+        "text": "HR rep's typed request at the top, shown verbatim. Below it, the agent's interpreted criteria as a plain-language chip (e.g., 'Start date Nov 1–30 · 6 matches') so the rep can catch a misread date range at a glance. Below that, the matched new hires in a simple table — name, site, start date — with nothing sent yet.",
+        "diagramSvg": "<svg viewBox='0 0 600 300' xmlns='http://www.w3.org/2000/svg' role='img' aria-label='Wireframe of the request and match preview screen: typed request, interpreted criteria chip, and a table of matched new hires awaiting confirmation'><rect x='1' y='1' width='598' height='298' rx='6' fill='var(--paper)' stroke='var(--line-strong)'/><rect x='1' y='1' width='598' height='34' rx='6' fill='var(--line)'/><text x='16' y='23' font-family='Arial, sans-serif' font-size='12' font-weight='700' fill='var(--ink)'>Onboarding Packet Agent — New Request</text><text x='16' y='56' font-family='Arial, sans-serif' font-size='10' font-weight='700' letter-spacing='0.5' fill='var(--muted)'>REQUEST</text><rect x='16' y='64' width='568' height='30' rx='4' fill='var(--line)' fill-opacity='0.4'/><text x='26' y='84' font-family='Arial, sans-serif' font-size='11' font-style='italic' fill='var(--ink)'>\"Send onboarding packet to all new hires beginning work next month\"</text><rect x='16' y='104' width='300' height='24' rx='12' fill='var(--accent-soft)' stroke='var(--accent)'/><text x='166' y='120' font-family='Arial, sans-serif' font-size='10' font-weight='700' fill='var(--accent)' text-anchor='middle'>Interpreted: Nov 1–30 · 6 matches</text><text x='16' y='150' font-family='Arial, sans-serif' font-size='10' font-weight='700' letter-spacing='0.5' fill='var(--muted)'>MATCHED NEW HIRES — CONFIRM BEFORE SENDING</text><text x='16' y='168' font-family='Arial, sans-serif' font-size='9' font-weight='700' fill='var(--muted)'>NAME</text><text x='250' y='168' font-family='Arial, sans-serif' font-size='9' font-weight='700' fill='var(--muted)'>SITE</text><text x='420' y='168' font-family='Arial, sans-serif' font-size='9' font-weight='700' fill='var(--muted)'>START</text><line x1='16' y1='176' x2='584' y2='176' stroke='var(--line)'/><text x='16' y='192' font-family='Arial, sans-serif' font-size='11' fill='var(--ink)'>J. Alvarez</text><text x='250' y='192' font-family='Arial, sans-serif' font-size='11' fill='var(--ink)'>Denver</text><text x='420' y='192' font-family='Arial, sans-serif' font-size='11' fill='var(--ink)'>Nov 3</text><text x='16' y='214' font-family='Arial, sans-serif' font-size='11' fill='var(--ink)'>R. Chen</text><text x='250' y='214' font-family='Arial, sans-serif' font-size='11' fill='var(--ink)'>Denver</text><text x='420' y='214' font-family='Arial, sans-serif' font-size='11' fill='var(--ink)'>Nov 3</text><text x='16' y='236' font-family='Arial, sans-serif' font-size='11' fill='var(--ink)'>M. Osei</text><text x='250' y='236' font-family='Arial, sans-serif' font-size='11' fill='var(--ink)'>Atlanta</text><text x='420' y='236' font-family='Arial, sans-serif' font-size='11' fill='var(--ink)'>Nov 10</text><text x='16' y='258' font-family='Arial, sans-serif' font-size='11' font-style='italic' fill='var(--muted)'>+ 3 more</text><rect x='430' y='268' width='154' height='24' rx='4' fill='var(--accent)'/><text x='507' y='284' font-family='Arial, sans-serif' font-size='10' font-weight='700' fill='var(--accent-ink)' text-anchor='middle'>Review packet contents →</text></svg>"
       },
-      "pitfall": "Showing only the happy-path empty state and skipping what it looks like at 0 flags, 1 flag, and 10 flags. A summary badge that just says 'FLAGS FOUND' with no count forces the admin to open every case to know how much work is waiting.",
+      "pitfall": "Showing the matched list without showing how the request was interpreted. If the HR rep can't see 'Nov 1–30' next to '6 matches,' they can't catch a misread date range before it turns into six misdirected packets — the interpretation has to be visible, not just the result.",
       "field": {
         "label": "Your turn: Screen 1",
-        "help": "What does the HR admin see when a new hire's submission with AI flags first appears?",
+        "help": "What does the HR rep see after typing a request, before anything is sent?",
         "type": "textarea",
         "placeholder": "Describe the layout and, importantly, its states."
       }
     },
     {
       "id": "screen_2",
-      "heading": "Screen 2 — Review & resolve",
-      "learning": "What can the admin change, and what happens when they resolve or override a flag?",
+      "heading": "Screen 2 — Packet contents & exceptions",
+      "learning": "What can the HR rep change, and how are hire-type exceptions surfaced before send, not after?",
       "example": {
-        "text": "Each flag is expandable to show the exact comparison the AI made. The admin can mark a flag 'Resolved — requesting new document' or 'Overridden — confirmed correct,' with a required one-line reason on override. Overrides are logged separately from resolutions, so we can track how often the AI's flags don't hold up."
+        "text": "The standard six-form packet listed once, with a note showing it applies to all 6 matched hires except one — a rehire, flagged with 'Rehire: confirm which forms apply' requiring the HR rep to check or uncheck forms for that one person specifically before the batch can be confirmed."
       },
-      "pitfall": "Letting an override happen with no reason captured. If the AI cited a federal requirement and the admin just clicks past it, you've lost the one signal that tells you the citation was wrong — require the reason every time, not just when someone remembers to add one.",
+      "pitfall": "Applying the standard packet to everyone silently, including the one hire-type exception the agent's rules don't cover. An exception that's buried instead of flagged inline means the HR rep only finds out after several people got forms that didn't apply to them.",
       "field": {
         "label": "Your turn: Screen 2",
-        "help": "What can the admin change, and what happens when they resolve or override a flag?",
+        "help": "How are the packet contents shown, and how are exceptions (like a rehire) surfaced?",
         "type": "textarea",
-        "placeholder": "Describe the editable states and what gets logged."
+        "placeholder": "Describe the editable states and what gets flagged."
       }
     },
     {
       "id": "screen_3",
-      "heading": "Screen 3 — Escalation state",
-      "learning": "What does the admin see for a submission that's been routed for manual review? Week 3's escalation rules define exactly which cases land here — an unrecognized document type, a prior audit flag, or a receipt/reverification deadline coming due.",
+      "heading": "Screen 3 — Send status",
+      "learning": "What does the HR rep see once they've confirmed and the agent has actually sent the packets?",
       "example": {
-        "text": "A banner explains why it was routed for manual review — citing the specific escalation rule that triggered it (e.g., 'reverification due in 45 days'). No AI flags are shown as final — instead, the relevant federal requirement text is surfaced as reference material, and the admin works from a blank review form rather than an AI-suggested one."
+        "text": "A per-employee status line — Sent, or a specific reason it wasn't (bounced email, missing address) — so a batch of 40 doesn't just report 'Done' with no way to tell if 3 silently failed. Anything that didn't send routes to a clear next action, not a dead end."
       },
-      "pitfall": "Auto-filling the escalation form with the AI's original (now-overridden) guess. The whole point of escalation is that the AI's read is no longer trusted for this case — pre-filling anything from it defeats that.",
+      "pitfall": "Showing one aggregate 'Packets sent!' message instead of per-employee status. A single success banner hides the one delivery failure in a batch of 40 that actually needs someone to notice and fix it before that person's Day 1.",
       "field": {
         "label": "Your turn: Screen 3",
-        "help": "What does the admin see for an escalated submission?",
+        "help": "What does the HR rep see after sending, and how are failures surfaced?",
         "type": "textarea",
-        "placeholder": "Describe what's shown, and what's deliberately not auto-filled."
+        "placeholder": "Describe the status view and what happens for a failed send."
       }
     },
     {
@@ -62,9 +62,9 @@
       "heading": "Key interaction, in depth",
       "learning": "One key interaction beats three flat screens. Pick the single most important moment — usually where the user makes a decision or the AI hands control back to a human — and describe it in more depth than everything else. That's usually the part worth testing with real people first.",
       "example": {
-        "text": "The override moment (Screen 2) is the one worth testing first — it's where we learn whether admins trust the AI's citations enough to act on them without re-checking the source document themselves, or whether they're overriding out of habit rather than genuine disagreement."
+        "text": "The confirmation moment (Screen 1 into Screen 2) is the one worth testing first — it's where we learn whether HR reps actually read the interpreted criteria and matched list before confirming, or whether they click through on habit, which would mean the confirmation step isn't really providing the safety it's designed for."
       },
-      "pitfall": "Picking the interaction that's easiest to prototype instead of the one that's riskiest to be wrong about. A polished submission screen doesn't tell you anything you didn't already know — the override moment does.",
+      "pitfall": "Picking the interaction that's easiest to prototype instead of the one that's riskiest to be wrong about. A polished send-status screen doesn't tell you anything you didn't already know — the confirmation moment does.",
       "field": {
         "label": "Your turn: Key interaction",
         "help": "Pick the single most important moment and describe it in more depth than the screens above.",
@@ -77,7 +77,7 @@
       "heading": "The prompt you'd use to generate this",
       "learning": "Write the actual prompt you'd type into Claude or Gemini to turn this outline into a first-pass mockup or clickable flow.",
       "example": {
-        "text": "Act as a product designer. Generate a 3-screen wireframe description for an HR admin tool with these screens and states: [paste the three screens above]. Output as a numbered list of UI elements per screen, no visual design opinions yet."
+        "text": "Act as a product designer. Generate a 3-screen wireframe description for an HR rep tool with these screens and states: [paste the three screens above]. Output as a numbered list of UI elements per screen, no visual design opinions yet."
       },
       "pitfall": "Asking the AI to also make visual design decisions ('make it look nice') in the same prompt as the structural outline. Separate 'what elements exist and what state are they in' from 'what it looks like' — mixing the two produces a prototype that's polished but structurally wrong.",
       "field": {
@@ -88,6 +88,6 @@
       }
     }
   ],
-  "artifactFilename": "week-4-i9-completion-assistant-prototype-brief.md",
-  "artifactTemplate": "# Prototype Brief — I-9 Completion Assistant (HR admin view)\n\n**Built by:** {{__name__}}\n**Date:** {{__date__}}\n\n## Screen 1 — Incoming submission\n{{screen_1}}\n\n## Screen 2 — Review & resolve\n{{screen_2}}\n\n## Screen 3 — Escalation state\n{{screen_3}}\n\n## Key interaction\n{{key_interaction}}\n\n## Prompt used to generate a first-pass mockup\n{{ai_prompt_used}}\n\n---\n_Template from the AI PM Training Program, Week 4: Prototyping with AI. Hand this brief directly to design or engineering as a starting point._\n"
+  "artifactFilename": "week-4-onboarding-packet-agent-prototype-brief.md",
+  "artifactTemplate": "# Prototype Brief — Onboarding Packet Agent (HR rep view)\n\n**Built by:** {{__name__}}\n**Date:** {{__date__}}\n\n## Screen 1 — Request & match preview\n{{screen_1}}\n\n## Screen 2 — Packet contents & exceptions\n{{screen_2}}\n\n## Screen 3 — Send status\n{{screen_3}}\n\n## Key interaction\n{{key_interaction}}\n\n## Prompt used to generate a first-pass mockup\n{{ai_prompt_used}}\n\n---\n_Template from the AI PM Training Program, Week 4: Prototyping with AI. Hand this brief directly to design or engineering as a starting point._\n"
 }

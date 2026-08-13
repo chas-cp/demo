@@ -11,7 +11,7 @@
       "id": "week-1",
       "order": 1,
       "title": "Foundations",
-      "tagline": "Score an AI feature idea against value, viability, feasibility, and usability — reframed for AI.",
+      "tagline": "Refresh core PM principles — problem validation, then desirability/value, viability, feasibility, and usability — reframed for AI.",
       "timeEstimate": "~25 min"
     },
     {
@@ -43,8 +43,15 @@
       "timeEstimate": "~25 min"
     },
     {
-      "id": "capstone",
+      "id": "week-6",
       "order": 6,
+      "title": "Launch, Adoption & Monitoring",
+      "tagline": "Close out the AI PDLC: launch readiness, getting people to actually use it, and watching it after launch.",
+      "timeEstimate": "~25 min"
+    },
+    {
+      "id": "capstone",
+      "order": 7,
       "title": "Capstone",
       "tagline": "Assemble everything you built into one shareable AI PM portfolio piece.",
       "timeEstimate": "~20 min"
