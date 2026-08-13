@@ -1,6 +1,6 @@
-// AI PM Training Program — zero-dependency Node server.
+// AI PM Training Program: zero-dependency Node server.
 // Serves the static frontend from /public, JSON content from /content, and
-// tracks team progress (no login — a per-browser learner id) in /data/progress.json.
+// tracks team progress (no login, a per-browser learner id) in /data/progress.json.
 const http = require("http");
 const fs = require("fs");
 const path = require("path");
@@ -24,6 +24,7 @@ const MIME_TYPES = {
   ".svg": "image/svg+xml",
   ".ico": "image/x-icon",
   ".png": "image/png",
+  ".woff2": "font/woff2",
 };
 
 function safeJoin(baseDir, requestPath) {

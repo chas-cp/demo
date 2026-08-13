@@ -1,17 +1,17 @@
 {
   "program": {
     "title": "AI PM Training Program",
-    "subtitle": "From experienced PM to AI PM — one 30-minute module a week.",
+    "subtitle": "From experienced PM to AI PM: one 30-minute module a week.",
     "productName": "Employer Services",
-    "scenarioCompany": "Equifax Workforce Solutions — Onboarding · I-9",
-    "scenarioNote": "Every exercise runs on a real Equifax Workforce Solutions product category — Onboarding, which includes I-9, E-Verify, Onboarding Forms, and WOTC — building specifically within the I-9 product, for a fully fictional customer, Meridian Logistics, with fictional data throughout. Nothing you enter here should ever be a real customer, real employee, or real roadmap detail. See the Data Boundary note on the home page."
+    "scenarioCompany": "Equifax Workforce Solutions: Onboarding · I-9",
+    "scenarioNote": "Every exercise runs on a real Equifax Workforce Solutions product category, Onboarding, which includes I-9, E-Verify, Onboarding Forms, and WOTC, building specifically within the Forms HQ and I-9 HQ products, for a fully fictional customer, Meridian Logistics, with fictional data throughout. Nothing you enter here should ever be a real customer, real employee, or real roadmap detail. See the Data Boundary note on the home page."
   },
   "weeks": [
     {
       "id": "week-1",
       "order": 1,
       "title": "Foundations",
-      "tagline": "Refresh core PM principles — problem validation, then desirability/value, viability, feasibility, and usability — reframed for AI.",
+      "tagline": "Refresh core PM principles: problem validation, then desirability, viability, feasibility, and usability, reframed for AI.",
       "timeEstimate": "~25 min"
     },
     {

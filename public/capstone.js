@@ -13,7 +13,7 @@
     priorWeeks.map((w) => fetch(`/api/weeks/${w.id}`).then((r) => r.json()))
   );
 
-  document.title = `${capstone.title} — AI PM Training Program`;
+  document.title = `${capstone.title}: AI PM Training Program`;
   document.getElementById("week-title").textContent = capstone.title;
   document.getElementById("week-tagline").textContent = capstone.tagline;
   document.getElementById("week-intro").textContent = capstone.intro;

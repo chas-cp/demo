@@ -21,7 +21,7 @@
   const weeks = program.weeks.sort((a, b) => a.order - b.order);
   const idx = weeks.findIndex((w) => w.id === weekId);
 
-  document.title = `${week.title} — AI PM Training Program`;
+  document.title = `${week.title}: AI PM Training Program`;
   document.getElementById("week-eyebrow").textContent = `Module ${String(week.order).padStart(2, "0")} · ${week.timeEstimate}`;
   document.getElementById("week-title").textContent = week.title;
   document.getElementById("week-tagline").textContent = week.tagline;
